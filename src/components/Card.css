@@ -1,0 +1,58 @@
+.farsly-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-2xl);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+/* Default Variant - Premium White Surface */
+.farsly-card--default {
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+
+.farsly-card--default:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-medium);
+}
+
+/* Soft Variant - Warm Beige/Cream Surface */
+.farsly-card--soft {
+  background: var(--color-background-soft);
+  box-shadow: none;
+  border: 1px solid transparent;
+}
+
+.farsly-card--soft:hover {
+  background: var(--color-background-beige);
+}
+
+/* Outlined Variant - Transparent with Border */
+.farsly-card--outlined {
+  background: transparent;
+  border: 1px solid var(--color-border-medium);
+  box-shadow: none;
+}
+
+.farsly-card--outlined:hover {
+  border-color: var(--color-border-strong);
+}
+
+/* Reset margin for first and last child to prevent awkward spacing */
+.farsly-card > *:first-child {
+  margin-top: 0;
+}
+
+.farsly-card > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 375px) {
+  .farsly-card {
+    padding: var(--space-xl);
+  }
+}

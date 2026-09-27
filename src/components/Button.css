@@ -1,0 +1,86 @@
+.farsly-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--button-height);
+  padding: 0 var(--space-2xl);
+  border-radius: var(--radius-pill);
+  border: none;
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--font-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.farsly-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none !important;
+}
+
+.farsly-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.farsly-button:focus-visible {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 4px;
+}
+
+/* Primary Variant */
+.farsly-button--primary {
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.farsly-button--primary:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Secondary Variant */
+.farsly-button--secondary {
+  background: var(--color-sage);
+  color: var(--color-surface);
+}
+
+.farsly-button--secondary:hover:not(:disabled) {
+  background: var(--color-sage-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Accent Variant */
+.farsly-button--accent {
+  background: var(--color-accent);
+  color: var(--color-surface);
+}
+
+.farsly-button--accent:hover:not(:disabled) {
+  background: var(--color-accent-dark);
+  box-shadow: var(--shadow-accent);
+}
+
+/* Outline Variant */
+.farsly-button--outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+}
+
+.farsly-button--outline:hover:not(:disabled) {
+  background: var(--color-border);
+}
+
+/* Danger Variant */
+.farsly-button--danger {
+  background: transparent;
+  color: var(--color-error);
+  border: 1.5px solid var(--color-error);
+}
+
+.farsly-button--danger:hover:not(:disabled) {
+  background: var(--color-error);
+  color: var(--color-surface);
+}
