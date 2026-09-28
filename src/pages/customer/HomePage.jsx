@@ -9,9 +9,9 @@ import { ShopContext } from '../../context/ShopContext';
 import './HomePage.css';
 
 const customerLinks = [
-  { label: 'Home', href: '#/' },
-  { label: 'Menu', href: '#/menu' },
-  { label: 'Farsly Club', href: '#/club' },
+  { label: 'Home', href: '/' },
+  { label: 'Menu', href: '/menu' },
+  { label: 'Farsly Club', href: '/club' },
 ];
 
 const HomePage = () => {
@@ -217,22 +217,7 @@ const HomePage = () => {
 
 
         {/* ══════════════════════════════════
-            6. FARSLY CLUB
-            ══════════════════════════════════ */}
-        <section className="club-section">
-          <div className="container club-inner">
-            <span className="eyebrow eyebrow--coral">Farsly Club</span>
-            <h2>Eat well. Earn&nbsp;rewards.</h2>
-            <p>
-              Join Farsly Club and earn points with every order. Unlock
-              exclusive menu items, birthday bowls, and member-only perks.
-            </p>
-            <Button variant="primary">Join Farsly Club</Button>
-          </div>
-        </section>
-
-        {/* ══════════════════════════════════
-            7. FINAL CTA
+            6. FINAL CTA
             ══════════════════════════════════ */}
         <section className="final-cta">
           <div className="container final-cta-inner">

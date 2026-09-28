@@ -1,5 +1,6 @@
 /* ==========================================================================
    CUSTOMER DASHBOARD
+   Visual language: matches HomePage.css
    ========================================================================== */
 
 .dashboard-page {
@@ -8,31 +9,19 @@
 }
 
 .dashboard-main {
-  padding-top: var(--space-4xl);
+  padding-top: var(--space-6xl);
   padding-bottom: var(--space-7xl);
-  max-width: 1200px;
 }
 
-/* ─── Typography & Spacing ─── */
 
-.dashboard-section {
-  margin-bottom: 48px;
-}
-
-.dashboard-section-title {
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-primary);
-  margin-bottom: var(--space-xl);
-  font-weight: var(--font-bold);
-}
-
-/* ─── Welcome Header ─── */
+/* ==========================================================================
+   1. WELCOME HEADER
+   Mirrors the Homepage hero typography:
+   eyebrow → heading → description
+   ========================================================================== */
 
 .dashboard-welcome {
-  margin-bottom: 40px;
+  margin-bottom: var(--space-7xl);
 }
 
 .dashboard-eyebrow {
@@ -43,24 +32,64 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--color-accent);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
 }
 
 .dashboard-greeting {
   font-family: var(--font-heading);
-  font-size: var(--text-4xl);
+  font-size: var(--text-5xl);
   color: var(--color-primary);
-  line-height: 1.2;
-  margin: 0;
+  line-height: 1.1;
+  margin: 0 0 var(--space-lg) 0;
   font-weight: var(--font-bold);
 }
 
-/* ─── Active Order ─── */
+.dashboard-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: var(--color-text-light);
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+
+/* ==========================================================================
+   2. SECTION TITLES
+   Matches Homepage's .eyebrow + .section-header h2 pattern
+   ========================================================================== */
+
+.dashboard-section {
+  margin-bottom: var(--space-7xl);
+}
+
+.dashboard-section-title {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-sage-dark);
+  margin-bottom: var(--space-3xl);
+  font-weight: var(--font-bold);
+}
+
+/* The latest-order card is a filled surface, so it needs more air under the
+   heading than the grid-based sections below it. */
+.dashboard-active-order-section .dashboard-section-title {
+  margin-bottom: var(--space-5xl);
+}
+
+
+/* ==========================================================================
+   3. ACTIVE ORDER
+   A calm white surface against the cream page, similar to
+   .hero-nutri-card on the homepage — same radius, shadow, spacing.
+   ========================================================================== */
 
 .dashboard-active-order {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  padding: var(--space-3xl);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-4xl);
   display: flex;
   flex-direction: column;
 }
@@ -80,17 +109,22 @@
   font-size: var(--text-sm);
   font-weight: var(--font-bold);
   color: var(--color-primary);
+  letter-spacing: 0.02em;
 }
 
 .dashboard-order-items {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-md);
 }
 
 .dashboard-order-item {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
+}
+
+.dashboard-order-item-name {
   font-family: var(--font-heading);
   font-size: var(--text-xl);
   color: var(--color-text);
@@ -98,13 +132,16 @@
 }
 
 .dashboard-order-item-qty {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
   color: var(--color-text-muted);
+  font-weight: var(--font-medium);
 }
 
 .dashboard-divider {
   border: 0;
   border-top: 1px solid var(--color-border);
-  margin: var(--space-xl) 0;
+  margin: var(--space-2xl) 0;
 }
 
 .dashboard-order-bottom {
@@ -120,8 +157,8 @@
 }
 
 .dashboard-order-total {
-  font-family: var(--font-body);
-  font-size: var(--text-xl);
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
   font-weight: var(--font-bold);
   color: var(--color-primary);
 }
@@ -129,60 +166,108 @@
 .dashboard-order-eta {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--color-sage-dark);
+  color: var(--color-text-muted);
 }
 
-/* ─── Quick Actions ─── */
+
+/* ==========================================================================
+   4. QUICK ACTIONS
+   Refined from generic buttons to elegant navigation actions
+   that echo the Homepage's farm-step pattern:
+   icon circle → title → subtle description
+   ========================================================================== */
 
 .quick-actions-grid {
-  display: flex;
-  gap: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
 }
 
 .quick-action-link {
-  flex: 1;
-  background: transparent;
-  border: 1px solid var(--color-border-strong);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-3xl) var(--space-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
   color: var(--color-primary);
   font-family: var(--font-body);
-  font-size: var(--text-md);
-  font-weight: var(--font-semibold);
-  padding: var(--space-xl) var(--space-lg);
-  text-align: center;
   text-decoration: none;
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
 .quick-action-link:hover {
-  background: var(--color-primary);
-  color: var(--color-surface);
-  border-color: var(--color-primary);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
 }
 
-/* ─── Favorites Grid ─── */
+.quick-action-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--color-background-beige);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.quick-action-title {
+  font-size: var(--text-md);
+  font-weight: var(--font-semibold);
+  color: var(--color-primary);
+}
+
+.quick-action-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.4;
+}
+
+
+/* ==========================================================================
+   5. FAVORITES GRID
+   Uses the same grid system as the Homepage's .signatures-grid
+   ========================================================================== */
 
 .dashboard-favorites-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-xl);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-3xl);
 }
 
-/* ─── Recent Orders ─── */
+
+/* ==========================================================================
+   6. RECENT ORDERS
+   Clean editorial list — white surfaces with subtle borders,
+   matching the visual restraint of the overall Farsly brand
+   ========================================================================== */
 
 .dashboard-recent-orders-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--space-lg);
 }
 
 .recent-order-compact {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-xl);
+  padding: var(--space-2xl) var(--space-3xl);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition-fast);
+}
+
+.recent-order-compact:hover {
+  border-color: var(--color-border-strong);
 }
 
 .recent-order-info {
@@ -197,6 +282,7 @@
   color: var(--color-primary);
   margin: 0;
   font-weight: var(--font-bold);
+  line-height: 1.3;
 }
 
 .recent-order-meta {
@@ -208,57 +294,118 @@
   color: var(--color-text-muted);
 }
 
-/* ─── Responsive ─── */
+.recent-order-price {
+  font-weight: var(--font-semibold);
+  color: var(--color-text-light);
+}
 
-@media (max-width: 900px) {
-  .dashboard-favorites-grid {
-    grid-template-columns: repeat(2, 1fr);
+.recent-order-date {
+  position: relative;
+  padding-left: var(--space-lg);
+}
+
+.recent-order-date::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: var(--color-text-muted);
+}
+
+
+/* ==========================================================================
+   RESPONSIVE — 1024px
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .dashboard-greeting {
+    font-size: var(--text-4xl);
   }
 }
+
+
+/* ==========================================================================
+   RESPONSIVE — 768px
+   ========================================================================== */
 
 @media (max-width: 768px) {
-  .quick-actions-grid {
-    flex-wrap: wrap;
+  .dashboard-main {
+    padding-top: var(--space-4xl);
   }
-  .quick-action-link {
-    flex: 1 1 calc(50% - var(--space-lg));
+
+  .dashboard-welcome {
+    margin-bottom: var(--space-5xl);
+  }
+
+  .dashboard-section {
+    margin-bottom: var(--space-5xl);
+  }
+
+  .dashboard-active-order-section .dashboard-section-title {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .dashboard-greeting {
+    font-size: var(--text-3xl);
+  }
+
+  .quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-active-order {
+    padding: var(--space-2xl);
   }
 }
+
+
+/* ==========================================================================
+   RESPONSIVE — 576px (small mobile)
+   ========================================================================== */
 
 @media (max-width: 576px) {
   .dashboard-greeting {
     font-size: var(--text-3xl);
   }
+
   .dashboard-favorites-grid {
     grid-template-columns: 1fr;
   }
+
   .quick-actions-grid {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
-  .quick-action-link {
-    width: 100%;
-    flex: 1 1 100%;
-  }
+
   .recent-order-compact {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-lg);
+    padding: var(--space-xl);
   }
+
   .recent-order-action {
     width: 100%;
   }
+
   .recent-order-action .farsly-button {
     width: 100%;
   }
+
   .dashboard-order-bottom {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-lg);
   }
+
   .dashboard-order-action {
     width: 100%;
   }
+
   .dashboard-order-action .farsly-button {
     width: 100%;
+  }
+
+  .dashboard-active-order {
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
   }
 }

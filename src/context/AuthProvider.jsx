@@ -6,8 +6,15 @@ export const AuthProvider = ({ children }) => {
     // Initialize from localStorage
     try {
       const storedUser = localStorage.getItem('farsly_user');
-      return storedUser ? JSON.parse(storedUser) : null;
+      const parsed = storedUser ? JSON.parse(storedUser) : null;
+      // Validate token structure
+      if (parsed && (!parsed.id || !parsed.role)) {
+        localStorage.removeItem('farsly_user');
+        return null;
+      }
+      return parsed;
     } catch {
+      localStorage.removeItem('farsly_user');
       return null;
     }
   });

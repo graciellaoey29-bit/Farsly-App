@@ -1,6 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
+
+const CUSTOMER_NAV_LINKS = [
+  { label: 'Dashboard', to: '/customer' },
+  { label: 'Menu', to: '/menu' },
+];
 
 const Navbar = ({
   brand = 'FARSLY',
@@ -21,21 +26,36 @@ const Navbar = ({
   ...rest
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+
+  const isCustomer = user?.role === 'customer';
+  const resolvedLinks = isCustomer
+    ? CUSTOMER_NAV_LINKS
+    : links.map((link) => ({ ...link, to: link.href?.replace(/^#/, '') }));
+
+  const resolveTo = (link) => link.to ?? link.href?.replace(/^#/, '') ?? '';
+  const isActiveLink = (link) => {
+    const to = resolveTo(link);
+    if (activePath) return activePath === to;
+    return location.pathname === to;
+  };
+
+  const closeMobile = () => setIsOpen(false);
 
   return (
     <nav className={`farsly-navbar ${className}`} {...rest}>
       <div className="farsly-navbar-inner">
-        
+
         {/* Left Side: Brand and Links */}
         <div className="farsly-navbar-left">
-          <Link to="/" className="farsly-navbar-brand">{brand}</Link>
-          
+          <Link to="/" className="farsly-navbar-brand" onClick={closeMobile}>{brand}</Link>
+
           <ul className="farsly-navbar-links desktop-only">
-            {links.map((link, idx) => (
+            {resolvedLinks.map((link, idx) => (
               <li key={idx}>
-                <Link 
-                  to={link.href.replace(/^#/, '')} 
-                  className={`farsly-navbar-link ${activePath === link.href ? 'active' : ''}`}
+                <Link
+                  to={resolveTo(link)}
+                  className={`farsly-navbar-link ${isActiveLink(link) ? 'active' : ''}`}
                 >
                   {link.label}
                 </Link>
@@ -46,11 +66,11 @@ const Navbar = ({
 
         {/* Right Side: Actions */}
         <div className="farsly-navbar-right desktop-only">
-          
+
           {showFavorites && (
-            <button 
-              className="farsly-navbar-icon-btn" 
-              onClick={onFavoriteClick} 
+            <button
+              className="farsly-navbar-icon-btn"
+              onClick={onFavoriteClick}
               aria-label="Favorites"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -63,9 +83,9 @@ const Navbar = ({
           )}
 
           {showCart && (
-            <button 
-              className="farsly-navbar-icon-btn" 
-              onClick={onCartClick} 
+            <button
+              className="farsly-navbar-icon-btn"
+              onClick={onCartClick}
               aria-label="Shopping bag"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -112,7 +132,7 @@ const Navbar = ({
               {favoriteCount > 0 && <span className="farsly-navbar-badge">{favoriteCount}</span>}
             </button>
           )}
-          
+
           {showCart && (
             <button className="farsly-navbar-icon-btn" onClick={onCartClick} aria-label="Shopping bag">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -124,7 +144,7 @@ const Navbar = ({
             </button>
           )}
 
-          <button 
+          <button
             className="farsly-navbar-menu-toggle"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close navigation" : "Open navigation"}
@@ -149,18 +169,19 @@ const Navbar = ({
       {isOpen && (
         <div className="farsly-navbar-mobile-menu mobile-only">
           <ul className="farsly-navbar-mobile-links">
-            {links.map((link, idx) => (
+            {resolvedLinks.map((link, idx) => (
               <li key={idx}>
-                <Link 
-                  to={link.href.replace(/^#/, '')} 
-                  className={`farsly-navbar-mobile-link ${activePath === link.href ? 'active' : ''}`}
+                <Link
+                  to={resolveTo(link)}
+                  onClick={closeMobile}
+                  className={`farsly-navbar-mobile-link ${isActiveLink(link) ? 'active' : ''}`}
                 >
                   {link.label}
                 </Link>
               </li>
             ))}
           </ul>
-          
+
           {showAuth && !user && (
             <div className="farsly-navbar-mobile-auth">
               <button className="farsly-navbar-btn-login" onClick={onLogin}>Log in</button>
