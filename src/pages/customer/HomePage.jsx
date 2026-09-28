@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 import Navbar from '../../components/Navbar';
 import Button from '../../components/Button';
 import CardMenu from '../../components/CardMenu';
@@ -10,12 +11,12 @@ import './HomePage.css';
 const customerLinks = [
   { label: 'Home', href: '#/' },
   { label: 'Menu', href: '#/menu' },
-  { label: 'Build Your Bowl', href: '#/build' },
   { label: 'Farsly Club', href: '#/club' },
 ];
 
 const HomePage = () => {
   const { toggleFavorite, isFavorite, addToCart, cartCount, favorites } = useContext(ShopContext);
+  const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   return (
@@ -30,6 +31,10 @@ const HomePage = () => {
         showFavorites={true}
         showCart={true}
         showAuth={true}
+        user={user}
+        onLogin={() => navigate('/login')}
+        onSignup={() => navigate('/signup')}
+        onLogout={() => { logout(); navigate('/'); }}
         onFavoriteClick={() => navigate('/favorites')}
         onCartClick={() => navigate('/cart')}
       />
@@ -51,8 +56,7 @@ const HomePage = () => {
                 sourced, organic ingredients. Build your perfect meal in seconds.
               </p>
               <div className="hero-actions">
-                <Button variant="primary">Build Your Bowl</Button>
-                <Button variant="outline">Explore Menu</Button>
+                <Button variant="primary" onClick={() => navigate('/menu')}>Explore Menu</Button>
               </div>
             </div>
             <div className="hero-visual">
@@ -205,45 +209,12 @@ const HomePage = () => {
             </div>
 
             <div className="signatures-cta">
-              <Button variant="outline">View Full Menu</Button>
+              <Button variant="outline" onClick={() => navigate('/menu')}>View Full Menu</Button>
             </div>
           </div>
         </section>
 
-        {/* ══════════════════════════════════
-            5. BUILD YOUR BOWL
-            ══════════════════════════════════ */}
-        <section className="build-section">
-          <div className="container build-inner">
-            <div className="build-content">
-              <span className="eyebrow">Your Way</span>
-              <h2>Build Your Perfect Bowl</h2>
-              <p className="build-desc">
-                Over 1,000 possible combinations. Design a meal that's
-                entirely&nbsp;yours.
-              </p>
-              <ol className="build-steps">
-                <li>
-                  <span className="build-step-num">01</span>
-                  <span className="build-step-text">Choose your base</span>
-                </li>
-                <li>
-                  <span className="build-step-num">02</span>
-                  <span className="build-step-text">Pick your protein</span>
-                </li>
-                <li>
-                  <span className="build-step-num">03</span>
-                  <span className="build-step-text">Load your toppings</span>
-                </li>
-                <li>
-                  <span className="build-step-num">04</span>
-                  <span className="build-step-text">Finish with dressing</span>
-                </li>
-              </ol>
-              <Button variant="accent">Start Building</Button>
-            </div>
-          </div>
-        </section>
+
 
         {/* ══════════════════════════════════
             6. FARSLY CLUB
@@ -270,8 +241,7 @@ const HomePage = () => {
               Made your way.
             </h2>
             <div className="final-cta-actions">
-              <Button variant="primary">Explore Menu</Button>
-              <Button variant="outline">Build Your Bowl</Button>
+              <Button variant="primary" onClick={() => navigate('/menu')}>Explore Menu</Button>
             </div>
           </div>
         </section>
@@ -287,22 +257,21 @@ const HomePage = () => {
           <div className="footer-links">
             <div className="footer-col">
               <h4>Menu</h4>
-              <a href="/menu">Signature Bowls</a>
-              <a href="/build">Build Your Bowl</a>
-              <a href="/menu">Salads &amp; Sides</a>
-              <a href="/menu">Drinks</a>
+              <Link to="/menu">Signature Bowls</Link>
+              <Link to="/menu">Salads &amp; Sides</Link>
+              <Link to="/menu">Drinks</Link>
             </div>
             <div className="footer-col">
               <h4>Company</h4>
-              <a href="#">Our Story</a>
-              <a href="#">Sustainability</a>
-              <a href="#">Careers</a>
+              <Link to="#">Our Story</Link>
+              <Link to="#">Sustainability</Link>
+              <Link to="#">Careers</Link>
             </div>
             <div className="footer-col">
               <h4>Support</h4>
-              <a href="#">Contact</a>
-              <a href="#">FAQ</a>
-              <a href="#">Allergens</a>
+              <Link to="#">Contact</Link>
+              <Link to="#">FAQ</Link>
+              <Link to="#">Allergens</Link>
             </div>
           </div>
           <div className="footer-bottom">

@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ShopContext } from '../../context/ShopContext';
+import { AuthContext } from '../../context/AuthContext';
 import Navbar from '../../components/Navbar';
 import Button from '../../components/Button';
 import StatusBadge from '../../components/StatusBadge';
@@ -13,20 +14,16 @@ import './CustomerDashboard.css';
 const customerLinks = [
   { label: 'Home', href: '#/' },
   { label: 'Menu', href: '#/menu' },
-  { label: 'Build Your Bowl', href: '#/build' },
   { label: 'Farsly Club', href: '#/club' },
 ];
 
-// Mock authenticated customer (no auth system exists yet)
-const currentUser = {
-  id: 1,
-  name: 'Grace',
-  role: 'customer',
-};
-
 const CustomerDashboard = () => {
   const { favorites, toggleFavorite, isFavorite, addToCart, cartCount } = useContext(ShopContext);
+  const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  // Handle case where user might be null (though ProtectedRoute should prevent this)
+  const currentUser = user || { id: 1, name: 'Guest', role: 'customer' };
 
   // Filter orders for this customer
   const customerOrders = orders.filter((o) => o.customerId === currentUser.id);
@@ -66,6 +63,9 @@ const CustomerDashboard = () => {
         showCart={true}
         showAuth={true}
         user={currentUser}
+        onLogin={() => navigate('/login')}
+        onSignup={() => navigate('/signup')}
+        onLogout={() => { logout(); navigate('/'); }}
         onFavoriteClick={() => navigate('/favorites')}
         onCartClick={() => navigate('/cart')}
       />

@@ -289,68 +289,7 @@
 }
 
 
-/* ==========================================================================
-   5. BUILD YOUR BOWL
-   ========================================================================== */
 
-.build-section {
-  padding: var(--space-7xl) 0;
-  background: var(--color-background);
-}
-
-.build-inner {
-  display: flex;
-  justify-content: center;
-}
-
-.build-content {
-  max-width: 600px;
-  text-align: center;
-}
-
-.build-content h2 {
-  font-size: var(--text-4xl);
-  color: var(--color-primary);
-  margin-bottom: var(--space-lg);
-}
-
-.build-desc {
-  font-size: var(--text-lg);
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-4xl);
-}
-
-.build-steps {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xl);
-  margin-bottom: var(--space-5xl);
-  text-align: left;
-}
-
-.build-steps li {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xl);
-  padding-bottom: var(--space-lg);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.build-steps li:last-child {
-  border-bottom: none;
-}
-
-.build-step-num {
-  font-family: var(--font-heading);
-  font-size: var(--text-2xl);
-  color: var(--color-sage-dark);
-}
-
-.build-step-text {
-  font-size: var(--text-xl);
-  font-weight: var(--font-medium);
-  color: var(--color-primary);
-}
 
 
 /* ==========================================================================
@@ -596,7 +535,6 @@
 
   .philosophy h2,
   .section-header h2,
-  .build-content h2,
   .club-inner h2 {
     font-size: var(--text-3xl);
   }
@@ -614,13 +552,7 @@
     grid-template-columns: 1fr;
   }
 
-  .build-step-text {
-    font-size: var(--text-lg);
-  }
 
-  .build-section .farsly-button {
-    width: 100%;
-  }
 
   .final-cta-inner h2 {
     font-size: var(--text-3xl);

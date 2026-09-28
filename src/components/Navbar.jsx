@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = ({
@@ -27,17 +28,17 @@ const Navbar = ({
         
         {/* Left Side: Brand and Links */}
         <div className="farsly-navbar-left">
-          <a href="/" className="farsly-navbar-brand">{brand}</a>
+          <Link to="/" className="farsly-navbar-brand">{brand}</Link>
           
           <ul className="farsly-navbar-links desktop-only">
             {links.map((link, idx) => (
               <li key={idx}>
-                <a 
-                  href={link.href} 
+                <Link 
+                  to={link.href.replace(/^#/, '')} 
                   className={`farsly-navbar-link ${activePath === link.href ? 'active' : ''}`}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -150,12 +151,12 @@ const Navbar = ({
           <ul className="farsly-navbar-mobile-links">
             {links.map((link, idx) => (
               <li key={idx}>
-                <a 
-                  href={link.href} 
+                <Link 
+                  to={link.href.replace(/^#/, '')} 
                   className={`farsly-navbar-mobile-link ${activePath === link.href ? 'active' : ''}`}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

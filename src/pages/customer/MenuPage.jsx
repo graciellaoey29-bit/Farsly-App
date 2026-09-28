@@ -1,5 +1,6 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { ShopContext } from '../../context/ShopContext';
+import { AuthContext } from '../../context/AuthContext';
 import Navbar from '../../components/Navbar';
 import PageHeader from '../../components/PageHeader';
 import CardMenu from '../../components/CardMenu';
@@ -12,7 +13,6 @@ import './MenuPage.css';
 const customerLinks = [
   { label: 'Home', href: '/' },
   { label: 'Menu', href: '/menu' },
-  { label: 'Build Your Bowl', href: '/build' },
   { label: 'Farsly Club', href: '/club' },
 ];
 
@@ -20,6 +20,7 @@ const CATEGORIES = ['All', 'Poke', 'Salads', 'Drinks', 'Seasonal'];
 
 const MenuPage = () => {
   const { toggleFavorite, isFavorite, addToCart, cartCount, favorites } = useContext(ShopContext);
+  const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState('All');
 
@@ -32,12 +33,16 @@ const MenuPage = () => {
       <Navbar
         brand="FARSLY"
         links={customerLinks}
-        activePath="/menu"
+        activePath=""
         favoriteCount={favorites.length}
         cartCount={cartCount}
         showFavorites={true}
         showCart={true}
         showAuth={true}
+        user={user}
+        onLogin={() => navigate('/login')}
+        onSignup={() => navigate('/signup')}
+        onLogout={() => { logout(); navigate('/'); }}
         onFavoriteClick={() => navigate('/favorites')}
         onCartClick={() => navigate('/cart')}
       />
@@ -95,14 +100,7 @@ const MenuPage = () => {
           </div>
         )}
 
-        <section className="menu-build-cta">
-          <div className="menu-build-cta-content">
-            <h3>Can't find exactly what you're craving?</h3>
-            <Button variant="primary" onClick={() => navigate('/build')}>
-              Build Your Bowl
-            </Button>
-          </div>
-        </section>
+
       </main>
     </div>
   );

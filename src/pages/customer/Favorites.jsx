@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { ShopContext } from '../../context/ShopContext';
+import { AuthContext } from '../../context/AuthContext';
 import Navbar from '../../components/Navbar';
 import CardMenu from '../../components/CardMenu';
 import EmptyState from '../../components/EmptyState';
@@ -10,12 +11,12 @@ import './Favorites.css';
 const customerLinks = [
   { label: 'Home', href: '/' },
   { label: 'Menu', href: '/menu' },
-  { label: 'Build Your Bowl', href: '/build' },
   { label: 'Farsly Club', href: '/club' },
 ];
 
 const Favorites = () => {
   const { favorites, toggleFavorite, isFavorite, addToCart, cartCount } = useContext(ShopContext);
+  const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   return (
@@ -29,6 +30,10 @@ const Favorites = () => {
         showFavorites={true}
         showCart={true}
         showAuth={true}
+        user={user}
+        onLogin={() => navigate('/login')}
+        onSignup={() => navigate('/signup')}
+        onLogout={() => { logout(); navigate('/'); }}
         onFavoriteClick={() => navigate('/favorites')}
         onCartClick={() => navigate('/cart')}
       />
@@ -40,12 +45,21 @@ const Favorites = () => {
         />
 
         {favorites.length === 0 ? (
-          <EmptyState
-            title="Your favorites are empty"
-            message="Save the Farsly meals you love and they'll appear here."
-            actionLabel="Browse Menu"
-            onAction={() => navigate('/menu')}
-          />
+          !user ? (
+            <EmptyState
+              title="Log in to save favorites"
+              message="Create an account or log in to save your favorite Farsly meals across devices."
+              actionLabel="Log In"
+              onAction={() => navigate('/login')}
+            />
+          ) : (
+            <EmptyState
+              title="Your favorites are empty"
+              message="Save the Farsly meals you love and they'll appear here."
+              actionLabel="Browse Menu"
+              onAction={() => navigate('/menu')}
+            />
+          )
         ) : (
           <div className="favorites-grid">
             {favorites.map((item) => (

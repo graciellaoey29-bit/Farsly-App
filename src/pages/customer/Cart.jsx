@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { ShopContext } from '../../context/ShopContext';
+import { AuthContext } from '../../context/AuthContext';
 import Navbar from '../../components/Navbar';
 import EmptyState from '../../components/EmptyState';
 import PageHeader from '../../components/PageHeader';
@@ -10,12 +11,12 @@ import './Cart.css';
 const customerLinks = [
   { label: 'Home', href: '/' },
   { label: 'Menu', href: '/menu' },
-  { label: 'Build Your Bowl', href: '/build' },
   { label: 'Farsly Club', href: '/club' },
 ];
 
 const Cart = () => {
   const { cart, removeFromCart, increaseQuantity, decreaseQuantity, favorites, cartSubtotal, formatPrice, cartCount } = useContext(ShopContext);
+  const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   return (
@@ -29,6 +30,10 @@ const Cart = () => {
         showFavorites={true}
         showCart={true}
         showAuth={true}
+        user={user}
+        onLogin={() => navigate('/login')}
+        onSignup={() => navigate('/signup')}
+        onLogout={() => { logout(); navigate('/'); }}
         onFavoriteClick={() => navigate('/favorites')}
         onCartClick={() => navigate('/cart')}
       />
@@ -119,7 +124,17 @@ const Cart = () => {
                 <span>{formatPrice(cartSubtotal)}</span>
               </div>
               
-              <Button variant="primary" className="cart-checkout-btn">
+              <Button 
+                variant="primary" 
+                className="cart-checkout-btn"
+                onClick={() => {
+                  if (!user) {
+                    navigate('/login');
+                  } else {
+                    navigate('/customer/checkout');
+                  }
+                }}
+              >
                 Checkout
               </Button>
             </div>

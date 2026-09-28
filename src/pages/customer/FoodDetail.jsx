@@ -1,6 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ShopContext } from '../../context/ShopContext';
+import { AuthContext } from '../../context/AuthContext';
 import Navbar from '../../components/Navbar';
 import Button from '../../components/Button';
 import EmptyState from '../../components/EmptyState';
@@ -10,7 +11,6 @@ import './FoodDetail.css';
 const customerLinks = [
   { label: 'Home', href: '#/' },
   { label: 'Menu', href: '#/menu' },
-  { label: 'Build Your Bowl', href: '#/build' },
   { label: 'Farsly Club', href: '#/club' },
 ];
 
@@ -18,6 +18,7 @@ const FoodDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { toggleFavorite, isFavorite, addToCart, cartCount, favorites } = useContext(ShopContext);
+  const { user, logout } = useContext(AuthContext);
   
   const [quantity, setQuantity] = useState(1);
   const [showToast, setShowToast] = useState(false);
@@ -40,6 +41,10 @@ const FoodDetail = () => {
           showFavorites={true}
           showCart={true}
           showAuth={true}
+          user={user}
+          onLogin={() => navigate('/login')}
+          onSignup={() => navigate('/signup')}
+          onLogout={() => { logout(); navigate('/'); }}
           onFavoriteClick={() => navigate('/favorites')}
           onCartClick={() => navigate('/cart')}
         />
@@ -84,6 +89,10 @@ const FoodDetail = () => {
         showFavorites={true}
         showCart={true}
         showAuth={true}
+        user={user}
+        onLogin={() => navigate('/login')}
+        onSignup={() => navigate('/signup')}
+        onLogout={() => { logout(); navigate('/'); }}
         onFavoriteClick={() => navigate('/favorites')}
         onCartClick={() => navigate('/cart')}
       />
