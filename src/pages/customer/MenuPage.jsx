@@ -5,7 +5,6 @@ import Navbar from '../../components/Navbar';
 import PageHeader from '../../components/PageHeader';
 import CardMenu from '../../components/CardMenu';
 import EmptyState from '../../components/EmptyState';
-import Button from '../../components/Button';
 import { useNavigate } from 'react-router-dom';
 import menuData from '../../data/menuData';
 import './MenuPage.css';

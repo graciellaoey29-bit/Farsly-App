@@ -92,7 +92,6 @@ export const initialOrders = [
   }
 ];
 
-export default initialOrders;
 const orders = [
   {
     id: 'FRS-1024',

@@ -1,7 +1,10 @@
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import PageHeader from '../../components/PageHeader';
 import StatusBadge from '../../components/StatusBadge';
 import EmptyState from '../../components/EmptyState';
+import { AuthContext } from '../../context/AuthContext';
 import { useOrders } from '../../context/OrdersContext';
 import { formatOrderTime, formatCurrency } from '../../utils/formatters';
 import './Dashboard.css';
@@ -15,11 +18,18 @@ import './Dashboard.css';
  */
 const Dashboard = ({ onViewAll }) => {
   const { orders, recentOrders, stats, loadDemoOrders, clearOrders } = useOrders();
+  const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
 
   // Links for staff navbar: only existing paths (Dashboard)
   const staffLinks = [
     { label: 'Dashboard', href: '/restaurant' }
   ];
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login', { replace: true });
+  };
 
   /**
    * Render StatusBadge according to shared component specs:
@@ -56,7 +66,7 @@ const Dashboard = ({ onViewAll }) => {
         showFavorites={false}
         showCart={false}
         showAuth={true}
-        onLogout={() => alert('Staff logged out')}
+        onLogout={handleLogout}
       />
 
       <main className="container page-shell">
