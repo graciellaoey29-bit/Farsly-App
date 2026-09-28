@@ -1,45 +1,24 @@
-import { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
-import { mockUsers } from '../data/users';
 
-export default function LoginPage() {
+export default function RegisterPage() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
   const [focusedInput, setFocusedInput] = useState(null);
   const navigate = useNavigate();
-  const { login, user } = useContext(AuthContext);
 
-  useEffect(() => {
-    if (user) {
-      if (user.role === 'customer') {
-        navigate('/customer', { replace: true });
-      } else if (user.role === 'restaurant') {
-        navigate('/restaurant', { replace: true });
-      } else {
-        navigate('/', { replace: true });
-      }
-    }
-  }, [user, navigate]);
-
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
     
-    // Mencari user yang cocok berdasarkan email & password
-    const matchedUser = mockUsers.find(
-      (u) => u.email.trim().toLowerCase() === email.trim().toLowerCase() && u.password === password
-    );
-
-    if (matchedUser) {
-      setError(''); // Bersihkan error jika berhasil
-      login(matchedUser); // Store auth state
-      
-      // Navigation is handled by the useEffect watching `user` from context
-    } else {
-      setError('Invalid email or password.');
+    if (!name || !email || !password) {
+      setError('Please fill in all fields.');
+      return;
     }
+
+    setError('');
+    navigate('/customer');
   };
 
   return (
@@ -73,27 +52,12 @@ export default function LoginPage() {
           transform: translateY(0);
         }
 
-        .btn-google {
-          transition: all 0.2s ease;
-        }
-        .btn-google:hover {
-          background-color: #F9FAFB !important;
-          border-color: #D1D5DB !important;
-          transform: translateY(-1px);
-          box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
-        }
-
         .input-field {
           transition: all 0.2s ease;
         }
-
-        .checkbox-custom {
-          accent-color: #B85A5A;
-          cursor: pointer;
-        }
       `}</style>
 
-      {/* Sisi Kiri: Visual Banner */}
+      {/* Left Side: Visual Banner */}
       <div style={styles.imageSection}>
         <img
           src="https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=1200&auto=format&fit=crop"
@@ -103,21 +67,21 @@ export default function LoginPage() {
         <div style={styles.imageOverlay} />
         
         <div style={styles.floatingBadge}>
-          <div style={styles.badgeIconWrapper}>🥗</div>
+          <div style={styles.badgeIconWrapper}>🌿</div>
           <div>
-            <p style={{ margin: 0, fontWeight: '700', fontSize: '13px', color: '#13332A' }}>100% Fresh & Organic</p>
-            <p style={{ margin: '2px 0 0 0', fontSize: '11px', color: '#6B7280' }}>Deliciously curated healthy meals</p>
+            <p style={{ margin: 0, fontWeight: '700', fontSize: '13px', color: '#13332A' }}>Join Farsly Today</p>
+            <p style={{ margin: '2px 0 0 0', fontSize: '11px', color: '#6B7280' }}>Discover healthy food & fresh choices</p>
           </div>
         </div>
       </div>
 
-      {/* Sisi Kanan: Form Section */}
+      {/* Right Side: Register Form Section */}
       <div style={styles.formSection}>
         <div style={styles.formCard}>
           
           <div style={styles.brandContainer}>
             <h1 style={styles.brand}>FARSLY</h1>
-            <p style={styles.subtext}>Log in to explore fresh & delicious choices</p>
+            <p style={styles.subtext}>Create an account to get started</p>
           </div>
 
           {error && (
@@ -131,14 +95,43 @@ export default function LoginPage() {
             </div>
           )}
 
-          <form onSubmit={handleLogin} style={styles.form}>
+          <form onSubmit={handleRegister} style={styles.form}>
+            {/* Name Input */}
+            <div style={styles.inputContainer}>
+              <span style={{
+                ...styles.icon,
+                color: focusedInput === 'name' ? '#B85A5A' : '#9CA3AF'
+              }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+              </span>
+              <input
+                type="text"
+                value={name}
+                onFocus={() => setFocusedInput('name')}
+                onBlur={() => setFocusedInput(null)}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Full Name"
+                className="input-field"
+                style={{
+                  ...styles.input,
+                  borderColor: focusedInput === 'name' ? '#B85A5A' : '#E5E7EB',
+                  backgroundColor: focusedInput === 'name' ? '#FFFFFF' : '#FAFAFA',
+                  boxShadow: focusedInput === 'name' ? '0 0 0 4px rgba(184, 90, 90, 0.12)' : '0 1px 2px rgba(0,0,0,0.02)'
+                }}
+                required
+              />
+            </div>
+
+            {/* Email Input */}
             <div style={styles.inputContainer}>
               <span style={{
                 ...styles.icon,
                 color: focusedInput === 'email' ? '#B85A5A' : '#9CA3AF'
               }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
               </span>
               <input
@@ -147,7 +140,7 @@ export default function LoginPage() {
                 onFocus={() => setFocusedInput('email')}
                 onBlur={() => setFocusedInput(null)}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Username or Email"
+                placeholder="Email Address"
                 className="input-field"
                 style={{
                   ...styles.input,
@@ -159,6 +152,7 @@ export default function LoginPage() {
               />
             </div>
 
+            {/* Password Input */}
             <div style={styles.inputContainer}>
               <span style={{
                 ...styles.icon,
@@ -186,44 +180,15 @@ export default function LoginPage() {
               />
             </div>
 
-            <div style={styles.optionsRow}>
-              <label style={styles.rememberMe}>
-                <input
-                  type="checkbox"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                  className="checkbox-custom"
-                />
-                <span>Remember me</span>
-              </label>
-              <span style={styles.forgotPassword}>Forgot password?</span>
-            </div>
-
             <button type="submit" className="btn-submit" style={styles.buttonSubmit}>
-              Sign In
+              Sign Up
             </button>
           </form>
 
-          <div style={styles.dividerContainer}>
-            <div style={styles.dividerLine}></div>
-            <span style={styles.dividerText}>or continue with</span>
-            <div style={styles.dividerLine}></div>
-          </div>
-
-          <button type="button" className="btn-google" style={styles.buttonGoogle}>
-            <svg width="18" height="18" viewBox="0 0 24 24">
-              <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
-              <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.26v3.15C3.25 21.3 7.31 24 12 24z"/>
-              <path fill="#FBBC05" d="M5.28 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.61H1.26C.46 8.22 0 10.06 0 12s.46 3.78 1.26 5.39l4.02-3.15z"/>
-              <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.25 2.7 1.26 6.61l4.02 3.15c.95-2.85 3.6-4.96 6.72-4.96z"/>
-            </svg>
-            Google
-          </button>
-
           <p style={styles.footerText}>
-            Don't have an account?{' '}
-            <span style={styles.linkText} onClick={() => navigate('/register')}>
-              Sign Up
+            Already have an account?{' '}
+            <span style={styles.linkText} onClick={() => navigate('/')}>
+              Sign In
             </span>
           </p>
 
@@ -306,7 +271,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginBottom: '24px',
+    marginBottom: '20px',
     textAlign: 'center',
   },
   brand: {
@@ -331,7 +296,7 @@ const styles = {
     padding: '10px 14px',
     borderRadius: '12px',
     fontSize: '12.5px',
-    marginBottom: '18px',
+    marginBottom: '16px',
     display: 'flex',
     alignItems: 'center',
     gap: '8px',
@@ -340,7 +305,7 @@ const styles = {
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
-    gap: '14px',
+    gap: '12px',
   },
   inputContainer: {
     position: 'relative',
@@ -357,34 +322,12 @@ const styles = {
   },
   input: {
     width: '100%',
-    padding: '13.5px 16px 13.5px 46px',
+    padding: '13px 16px 13px 46px',
     borderRadius: '12px',
     border: '1px solid #E5E7EB',
     fontSize: '13.5px',
     color: '#1F2937',
     outline: 'none',
-  },
-  optionsRow: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-    marginTop: '2px',
-    marginBottom: '4px',
-    fontSize: '12.5px',
-  },
-  rememberMe: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '6px',
-    color: '#4B5563',
-    cursor: 'pointer',
-    userSelect: 'none',
-  },
-  forgotPassword: {
-    color: '#B85A5A',
-    fontWeight: '600',
-    cursor: 'pointer',
   },
   buttonSubmit: {
     width: '100%',
@@ -397,48 +340,16 @@ const styles = {
     fontWeight: '700',
     cursor: 'pointer',
     boxShadow: '0 4px 14px rgba(184, 90, 90, 0.25)',
-  },
-  dividerContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    width: '100%',
-    margin: '20px 0',
-  },
-  dividerLine: {
-    flex: 1,
-    height: '1px',
-    backgroundColor: '#F3F4F6',
-  },
-  dividerText: {
-    padding: '0 12px',
-    fontSize: '11px',
-    color: '#9CA3AF',
-    fontWeight: '500',
-  },
-  buttonGoogle: {
-    width: '100%',
-    padding: '11.5px',
-    backgroundColor: '#FFFFFF',
-    color: '#374151',
-    border: '1px solid #E5E7EB',
-    borderRadius: '12px',
-    fontSize: '13.5px',
-    fontWeight: '600',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '10px',
-    boxShadow: '0 1px 2px rgba(0,0,0,0.02)',
+    marginTop: '6px',
   },
   footerText: {
     fontSize: '13px',
     color: '#6B7280',
-    marginTop: '22px',
+    marginTop: '20px',
     marginBottom: 0,
   },
   linkText: {
-    color: '#2563EB',
+    color: '#B85A5A',
     fontWeight: '600',
     cursor: 'pointer',
   },
