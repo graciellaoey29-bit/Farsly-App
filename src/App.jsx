@@ -1,58 +1,110 @@
-import React from 'react';
-import Navbar from './components/Navbar';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthProvider';
+import { ShopProvider } from './context/ShopProvider';
+import ProtectedRoute from './components/ProtectedRoute';
+import LoginPage from './pages/LoginPage';
+import HomePage from './pages/customer/HomePage';
+import Favorites from './pages/customer/Favorites';
+import Cart from './pages/customer/Cart';
+import MenuPage from './pages/customer/MenuPage';
+import FoodDetail from './pages/customer/FoodDetail';
+import CustomerDashboard from './pages/customer/CustomerDashboard';
+import NotFound from './pages/NotFound';
 
-function App() {
-  const customerLinks = [
-    { label: "Dashboard", href: "/" },
-    { label: "Menu", href: "/menu" },
-    { label: "My Orders", href: "/orders" }
-  ];
-
-  const restaurantLinks = [
-    { label: "Dashboard", href: "/restaurant" },
-    { label: "Orders", href: "/restaurant/orders" },
-    { label: "Kitchen", href: "/restaurant/kitchen" },
-    { label: "Menu & Inventory", href: "/restaurant/inventory" }
-  ];
-
-  return (
-    <div style={{ backgroundColor: 'var(--color-background)', minHeight: '100vh' }}>
-      
-      {/* TEST 1: CUSTOMER */}
-      <div style={{ marginBottom: '40px' }}>
-        <p style={{ padding: '20px', fontWeight: 'bold' }}>Customer View:</p>
-        <Navbar
-          brand="FARSLY"
-          links={customerLinks}
-          activePath="/menu"
-          user={{ name: "Grace", role: "Customer" }}
-          onLogout={() => alert("Customer logout")}
-        />
-      </div>
-
-      {/* TEST 2: RESTAURANT STAFF */}
-      <div style={{ marginBottom: '40px' }}>
-        <p style={{ padding: '20px', fontWeight: 'bold' }}>Restaurant View:</p>
-        <Navbar
-          brand="FARSLY"
-          links={restaurantLinks}
-          activePath="/restaurant/kitchen"
-          user={{ name: "Graciella", role: "Restaurant Staff" }}
-          onLogout={() => alert("Staff logout")}
-        />
-      </div>
-
-      {/* TEST 3: NO USER (GUEST) */}
-      <div style={{ marginBottom: '40px' }}>
-        <p style={{ padding: '20px', fontWeight: 'bold' }}>Guest View (No User):</p>
-        <Navbar
-          brand="FARSLY"
-          links={[{ label: "Home", href: "/" }, { label: "Menu", href: "/menu" }]}
-        />
-      </div>
-      
-    </div>
-  );
+function RestaurantPage({ title }) {
+  return <div style={{ padding: 40, fontFamily: 'sans-serif' }}><h1>{title || 'Restaurant Dashboard 🍽️'}</h1></div>;
 }
 
-export default App;
+function CustomerPlaceholder({ title }) {
+  return <div style={{ padding: 40, fontFamily: 'sans-serif' }}><h1>{title}</h1></div>;
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <ShopProvider>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<LoginPage />} />
+          
+          {/* Public Customer Routes */}
+          <Route path="/menu" element={<MenuPage />} />
+          <Route path="/menu/:id" element={<FoodDetail />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/cart" element={<Cart />} />
+          
+          {/* Protected Customer Routes */}
+          <Route
+            path="/customer"
+            element={
+              <ProtectedRoute requiredRole="customer">
+                <CustomerDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/customer/orders"
+            element={
+              <ProtectedRoute requiredRole="customer">
+                <CustomerPlaceholder title="Customer Orders" />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/customer/checkout"
+            element={
+              <ProtectedRoute requiredRole="customer">
+                <CustomerPlaceholder title="Checkout" />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/customer/track/:id"
+            element={
+              <ProtectedRoute requiredRole="customer">
+                <CustomerPlaceholder title="Track Order" />
+              </ProtectedRoute>
+            }
+          />
+          
+          {/* Protected Restaurant Routes */}
+          <Route
+            path="/restaurant"
+            element={
+              <ProtectedRoute requiredRole="restaurant">
+                <RestaurantPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/restaurant/orders"
+            element={
+              <ProtectedRoute requiredRole="restaurant">
+                <RestaurantPage title="Restaurant Orders" />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/restaurant/kitchen"
+            element={
+              <ProtectedRoute requiredRole="restaurant">
+                <RestaurantPage title="Restaurant Kitchen" />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/restaurant/inventory"
+            element={
+              <ProtectedRoute requiredRole="restaurant">
+                <RestaurantPage title="Restaurant Inventory" />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </ShopProvider>
+    </AuthProvider>
+  );
+}
