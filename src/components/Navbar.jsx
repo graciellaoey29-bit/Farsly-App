@@ -9,6 +9,7 @@ const Navbar = ({
   showFavorites = true,
   showCart = true,
   showAuth = true,
+  cartCount = 0,
   user,
   onLogin,
   onSignup,
@@ -71,6 +72,9 @@ const Navbar = ({
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <path d="M16 10a4 4 0 0 1-8 0"></path>
               </svg>
+              {cartCount > 0 && (
+                <span className="farsly-navbar-badge">{cartCount}</span>
+              )}
             </button>
           )}
 
@@ -115,6 +119,7 @@ const Navbar = ({
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <path d="M16 10a4 4 0 0 1-8 0"></path>
               </svg>
+              {cartCount > 0 && <span className="farsly-navbar-badge">{cartCount}</span>}
             </button>
           )}
 

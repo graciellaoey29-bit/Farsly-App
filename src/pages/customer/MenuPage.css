@@ -1,0 +1,108 @@
+/* ==========================================================================
+   MENU PAGE STYLES
+   ========================================================================== */
+
+.menu-page {
+  background: var(--color-background);
+}
+
+/* --- Category Navigation --- */
+.menu-filters-wrapper {
+  margin-bottom: var(--space-5xl);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.menu-filters {
+  display: flex;
+  gap: var(--space-3xl);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.menu-filters::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.menu-filter-btn {
+  background: transparent;
+  border: none;
+  padding: var(--space-md) 0;
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--font-medium);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+
+.menu-filter-btn:hover {
+  color: var(--color-primary);
+}
+
+.menu-filter-btn.active {
+  color: var(--color-accent);
+  font-weight: var(--font-bold);
+}
+
+.menu-filter-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent);
+}
+
+/* --- Menu Grid --- */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3xl);
+  margin-bottom: var(--space-7xl);
+}
+
+/* --- Build CTA Section --- */
+.menu-build-cta {
+  padding: var(--space-6xl) 0;
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-5xl);
+}
+
+.menu-build-cta-content h3 {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-xl);
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-filters {
+    gap: var(--space-xl);
+  }
+}
+
+@media (max-width: 576px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .menu-build-cta-content h3 {
+    font-size: var(--text-2xl);
+  }
+}

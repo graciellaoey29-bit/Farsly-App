@@ -1,0 +1,641 @@
+/* ==========================================================================
+   HOMEPAGE STYLES
+   ========================================================================== */
+
+.home-page {
+  background: var(--color-background);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+/* --- Typography Utilities --- */
+.eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-sage-dark);
+  margin-bottom: var(--space-md);
+}
+
+.eyebrow--coral {
+  color: var(--color-accent);
+}
+
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--space-6xl);
+}
+
+.section-header h2 {
+  font-size: var(--text-4xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.section-header p {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+
+/* ==========================================================================
+   1. HERO
+   ========================================================================== */
+
+.hero {
+  padding: var(--space-6xl) 0 var(--space-7xl);
+  background: var(--color-background);
+}
+
+.hero-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6xl);
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 540px;
+}
+
+.hero-title {
+  font-size: var(--text-5xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-xl);
+}
+
+.hero-subtitle {
+  font-size: var(--text-lg);
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin-bottom: var(--space-3xl);
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.hero-visual {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-img-ring {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.hero-img {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: var(--shadow-xl);
+}
+
+.hero-nutri-card {
+  position: absolute;
+  bottom: 10%;
+  right: -5%;
+  background: var(--color-surface);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  max-width: 220px;
+}
+
+.hero-nutri-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--color-primary);
+}
+
+.hero-nutri-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.hero-nutri-stat {
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  color: var(--color-accent);
+  margin-top: var(--space-xs);
+}
+
+
+/* ==========================================================================
+   2. PHILOSOPHY
+   ========================================================================== */
+
+.philosophy {
+  padding: var(--space-7xl) 0;
+  background: var(--color-background-soft);
+}
+
+.philosophy-grid {
+  display: flex;
+  align-items: center;
+  gap: var(--space-7xl);
+}
+
+.philosophy-visual {
+  flex: 1;
+}
+
+.philosophy-visual img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.philosophy-content {
+  flex: 1;
+  max-width: 500px;
+}
+
+.philosophy-content h2 {
+  font-size: var(--text-4xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-xl);
+}
+
+.philosophy-content p {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+}
+
+.philosophy-stats {
+  display: flex;
+  gap: var(--space-4xl);
+  margin-top: var(--space-3xl);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-xl);
+}
+
+.philosophy-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.philosophy-stat-num {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  color: var(--color-primary);
+}
+
+.philosophy-stat-label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-sage-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+/* ==========================================================================
+   3. FARM TO BOWL
+   ========================================================================== */
+
+.farm-section {
+  padding: var(--space-7xl) 0;
+  background: var(--color-background);
+}
+
+.farm-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3xl);
+  text-align: center;
+}
+
+.farm-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-xl);
+}
+
+.farm-step-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--color-background-beige);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  margin-bottom: var(--space-xl);
+}
+
+.farm-step h4 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-md);
+  color: var(--color-primary);
+}
+
+.farm-step p {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+
+/* ==========================================================================
+   4. SIGNATURE BOWLS
+   ========================================================================== */
+
+.signatures {
+  padding: var(--space-7xl) 0;
+  background: var(--color-background-soft);
+}
+
+.signatures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-3xl);
+  margin-bottom: var(--space-5xl);
+}
+
+.signatures-cta {
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   5. BUILD YOUR BOWL
+   ========================================================================== */
+
+.build-section {
+  padding: var(--space-7xl) 0;
+  background: var(--color-background);
+}
+
+.build-inner {
+  display: flex;
+  justify-content: center;
+}
+
+.build-content {
+  max-width: 600px;
+  text-align: center;
+}
+
+.build-content h2 {
+  font-size: var(--text-4xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.build-desc {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4xl);
+}
+
+.build-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-5xl);
+  text-align: left;
+}
+
+.build-steps li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.build-steps li:last-child {
+  border-bottom: none;
+}
+
+.build-step-num {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  color: var(--color-sage-dark);
+}
+
+.build-step-text {
+  font-size: var(--text-xl);
+  font-weight: var(--font-medium);
+  color: var(--color-primary);
+}
+
+
+/* ==========================================================================
+   6. FARSLY CLUB
+   ========================================================================== */
+
+.club-section {
+  padding: var(--space-7xl) 0;
+  background: var(--color-background-beige);
+}
+
+.club-inner {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.club-inner h2 {
+  font-size: var(--text-4xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.club-inner p {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--space-4xl);
+}
+
+
+/* ==========================================================================
+   7. FINAL CTA
+   ========================================================================== */
+
+.final-cta {
+  padding: var(--space-7xl) 0;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  text-align: center;
+}
+
+.final-cta-inner h2 {
+  font-size: var(--text-5xl);
+  color: var(--color-surface);
+  margin-bottom: var(--space-4xl);
+}
+
+.final-cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+}
+
+/* Adjust outline button on dark background */
+.final-cta .farsly-button--outline {
+  border-color: var(--color-surface);
+  color: var(--color-surface);
+}
+.final-cta .farsly-button--outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.final-cta .farsly-button--primary {
+  background: var(--color-accent);
+  color: var(--color-surface);
+}
+.final-cta .farsly-button--primary:hover {
+  background: var(--color-accent-dark);
+}
+
+
+/* ==========================================================================
+   8. FOOTER
+   ========================================================================== */
+
+.site-footer {
+  padding: var(--space-7xl) 0 var(--space-3xl);
+  background: var(--color-background-soft);
+  border-top: 1px solid var(--color-border);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-5xl);
+}
+
+.footer-brand {
+  flex: 1 1 300px;
+}
+
+.footer-logo {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0.05em;
+}
+
+.footer-tagline {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--space-6xl);
+  flex-wrap: wrap;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.footer-col h4 {
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.footer-col a {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.footer-col a:hover {
+  color: var(--color-accent);
+}
+
+.footer-bottom {
+  width: 100%;
+  text-align: center;
+  padding-top: var(--space-4xl);
+  margin-top: var(--space-4xl);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+
+/* ==========================================================================
+   9. RESPONSIVE (Max 1024px)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .hero-inner,
+  .philosophy-grid {
+    gap: var(--space-4xl);
+  }
+
+  .hero-title,
+  .final-cta-inner h2 {
+    font-size: var(--text-4xl);
+  }
+}
+
+
+/* ==========================================================================
+   10. RESPONSIVE (Max 768px)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-img-ring {
+    display: none;
+  }
+
+  .hero-nutri-card {
+    right: 0;
+    bottom: -10%;
+  }
+
+  .philosophy-grid {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .philosophy-stats {
+    justify-content: center;
+  }
+
+  .farm-track {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-inner {
+    flex-direction: column;
+  }
+}
+
+
+/* ==========================================================================
+   11. RESPONSIVE (Max 375px)
+   ========================================================================== */
+
+@media (max-width: 375px) {
+  .hero {
+    padding: var(--space-4xl) 0;
+  }
+
+  .hero-title {
+    font-size: var(--text-3xl);
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-base);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .farsly-button {
+    width: 100%;
+  }
+
+  .hero-nutri-card {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin-top: var(--space-lg);
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .philosophy h2,
+  .section-header h2,
+  .build-content h2,
+  .club-inner h2 {
+    font-size: var(--text-3xl);
+  }
+
+  .philosophy-stats {
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .farm-track {
+    grid-template-columns: 1fr;
+  }
+
+  .signatures-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .build-step-text {
+    font-size: var(--text-lg);
+  }
+
+  .build-section .farsly-button {
+    width: 100%;
+  }
+
+  .final-cta-inner h2 {
+    font-size: var(--text-3xl);
+  }
+
+  .final-cta-actions {
+    flex-direction: column;
+  }
+
+  .final-cta-actions .farsly-button {
+    width: 100%;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: var(--space-3xl);
+  }
+}
