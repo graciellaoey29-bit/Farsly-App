@@ -28,19 +28,15 @@ export default function LoginPage() {
     e.preventDefault();
     
     // Mencari user yang cocok berdasarkan email & password
-    const user = mockUsers.find(
+    const matchedUser = mockUsers.find(
       (u) => u.email.trim().toLowerCase() === email.trim().toLowerCase() && u.password === password
     );
 
-    if (user) {
+    if (matchedUser) {
       setError(''); // Bersihkan error jika berhasil
-      login(user); // Store auth state
+      login(matchedUser); // Store auth state
       
-      if (user.role === 'customer') {
-        navigate('/customer');
-      } else if (user.role === 'restaurant') {
-        navigate('/restaurant');
-      }
+      // Navigation is handled by the useEffect watching `user` from context
     } else {
       setError('Invalid email or password.');
     }

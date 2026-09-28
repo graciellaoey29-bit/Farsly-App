@@ -1,6 +1,7 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthProvider';
 import { ShopProvider } from './context/ShopProvider';
+import { OrdersProvider } from './context/OrdersContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/customer/HomePage';
@@ -9,11 +10,8 @@ import Cart from './pages/customer/Cart';
 import MenuPage from './pages/customer/MenuPage';
 import FoodDetail from './pages/customer/FoodDetail';
 import CustomerDashboard from './pages/customer/CustomerDashboard';
+import RestaurantDashboard from './pages/restaurant';
 import NotFound from './pages/NotFound';
-
-function RestaurantPage({ title }) {
-  return <div style={{ padding: 40, fontFamily: 'sans-serif' }}><h1>{title || 'Restaurant Dashboard 🍽️'}</h1></div>;
-}
 
 function CustomerPlaceholder({ title }) {
   return <div style={{ padding: 40, fontFamily: 'sans-serif' }}><h1>{title}</h1></div>;
@@ -23,7 +21,8 @@ export default function App() {
   return (
     <AuthProvider>
       <ShopProvider>
-        <Routes>
+        <OrdersProvider>
+          <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<LoginPage />} />
@@ -73,7 +72,7 @@ export default function App() {
             path="/restaurant"
             element={
               <ProtectedRoute requiredRole="restaurant">
-                <RestaurantPage />
+                <RestaurantDashboard />
               </ProtectedRoute>
             }
           />
@@ -81,7 +80,7 @@ export default function App() {
             path="/restaurant/orders"
             element={
               <ProtectedRoute requiredRole="restaurant">
-                <RestaurantPage title="Restaurant Orders" />
+                <CustomerPlaceholder title="Restaurant Orders" />
               </ProtectedRoute>
             }
           />
@@ -89,7 +88,7 @@ export default function App() {
             path="/restaurant/kitchen"
             element={
               <ProtectedRoute requiredRole="restaurant">
-                <RestaurantPage title="Restaurant Kitchen" />
+                <CustomerPlaceholder title="Restaurant Kitchen" />
               </ProtectedRoute>
             }
           />
@@ -97,13 +96,14 @@ export default function App() {
             path="/restaurant/inventory"
             element={
               <ProtectedRoute requiredRole="restaurant">
-                <RestaurantPage title="Restaurant Inventory" />
+                <CustomerPlaceholder title="Restaurant Inventory" />
               </ProtectedRoute>
             }
           />
 
           <Route path="*" element={<NotFound />} />
-        </Routes>
+          </Routes>
+        </OrdersProvider>
       </ShopProvider>
     </AuthProvider>
   );
