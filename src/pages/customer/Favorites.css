@@ -1,0 +1,18 @@
+/* Favorites Page Styles */
+
+.favorites-page {
+  background: var(--color-background);
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-3xl);
+  margin-top: var(--space-4xl);
+}
+
+@media (max-width: 375px) {
+  .favorites-grid {
+    grid-template-columns: 1fr;
+  }
+}

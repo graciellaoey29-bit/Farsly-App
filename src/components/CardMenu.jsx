@@ -1,8 +1,10 @@
-import React from 'react';
+;
+import { Link } from 'react-router-dom';
 import './CardMenu.css';
 import Button from './Button';
 
 const CardMenu = ({
+  id,
   image,
   category,
   name,
@@ -21,7 +23,13 @@ const CardMenu = ({
   return (
     <article className="farsly-card-menu">
       <div className="farsly-card-menu-image-wrapper">
-        {image && <img src={image} alt={name} className="farsly-card-menu-image" />}
+        {id && image ? (
+          <Link to={`/menu/${id}`} className="farsly-card-menu-link">
+            <img src={image} alt={name} className="farsly-card-menu-image" />
+          </Link>
+        ) : (
+          image && <img src={image} alt={name} className="farsly-card-menu-image" />
+        )}
         
         {badge && (
           <div className="farsly-card-menu-badge">
@@ -31,7 +39,7 @@ const CardMenu = ({
 
         <button 
           className={`farsly-card-menu-favorite ${isFavorite ? 'active' : ''}`}
-          onClick={onFavorite}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); onFavorite(); }}
           aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill={isFavorite ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -51,7 +59,13 @@ const CardMenu = ({
           </span>
         </div>
 
-        <h3 className="farsly-card-menu-title">{name}</h3>
+        {id ? (
+          <Link to={`/menu/${id}`} className="farsly-card-menu-title-link">
+            <h3 className="farsly-card-menu-title">{name}</h3>
+          </Link>
+        ) : (
+          <h3 className="farsly-card-menu-title">{name}</h3>
+        )}
         
         <p className="farsly-card-menu-description">{description}</p>
 
@@ -73,7 +87,7 @@ const CardMenu = ({
             </span>
           </div>
           
-          <Button variant="accent" onClick={onAddToCart} className="farsly-card-menu-cta">
+          <Button variant="accent" onClick={(e) => { e.preventDefault(); e.stopPropagation(); onAddToCart(); }} className="farsly-card-menu-cta">
             Add to cart
           </Button>
         </div>

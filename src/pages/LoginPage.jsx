@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import { mockUsers } from '../data/users';
 
 export default function LoginPage() {
@@ -9,23 +10,33 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [focusedInput, setFocusedInput] = useState(null);
   const navigate = useNavigate();
+  const { login, user } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (user) {
+      if (user.role === 'customer') {
+        navigate('/customer', { replace: true });
+      } else if (user.role === 'restaurant') {
+        navigate('/restaurant', { replace: true });
+      } else {
+        navigate('/', { replace: true });
+      }
+    }
+  }, [user, navigate]);
 
   const handleLogin = (e) => {
     e.preventDefault();
     
     // Mencari user yang cocok berdasarkan email & password
-    const user = mockUsers.find(
+    const matchedUser = mockUsers.find(
       (u) => u.email.trim().toLowerCase() === email.trim().toLowerCase() && u.password === password
     );
 
-    if (user) {
+    if (matchedUser) {
       setError(''); // Bersihkan error jika berhasil
+      login(matchedUser); // Store auth state
       
-      if (user.role === 'customer') {
-        navigate('/customer');
-      } else if (user.role === 'restaurant') {
-        navigate('/restaurant');
-      }
+      // Navigation is handled by the useEffect watching `user` from context
     } else {
       setError('Invalid email or password.');
     }
