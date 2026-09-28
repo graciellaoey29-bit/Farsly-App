@@ -21,9 +21,10 @@ const Dashboard = ({ onViewAll }) => {
   const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
 
-  // Links for staff navbar: only existing paths (Dashboard)
+  // Links for staff navbar
   const staffLinks = [
-    { label: 'Dashboard', href: '/restaurant' }
+    { label: 'Dashboard', href: '/restaurant' },
+    { label: 'Orders', href: '/restaurant/orders' }
   ];
 
   const handleLogout = () => {
@@ -49,9 +50,11 @@ const Dashboard = ({ onViewAll }) => {
   };
 
   const handleViewAllClick = (e) => {
+    e.preventDefault();
     if (onViewAll) {
-      e.preventDefault();
       onViewAll();
+    } else {
+      navigate('/restaurant/orders');
     }
   };
 

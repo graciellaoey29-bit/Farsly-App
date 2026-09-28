@@ -10,7 +10,7 @@ import Cart from './pages/customer/Cart';
 import MenuPage from './pages/customer/MenuPage';
 import FoodDetail from './pages/customer/FoodDetail';
 import CustomerDashboard from './pages/customer/CustomerDashboard';
-import RestaurantDashboard from './pages/restaurant';
+import RestaurantDashboard, { Orders } from './pages/restaurant';
 import NotFound from './pages/NotFound';
 
 function CustomerPlaceholder({ title }) {
@@ -80,7 +80,7 @@ export default function App() {
             path="/restaurant/orders"
             element={
               <ProtectedRoute requiredRole="restaurant">
-                <CustomerPlaceholder title="Restaurant Orders" />
+                <Orders />
               </ProtectedRoute>
             }
           />
