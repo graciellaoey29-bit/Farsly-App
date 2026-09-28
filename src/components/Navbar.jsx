@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = ({
@@ -9,6 +10,7 @@ const Navbar = ({
   showFavorites = true,
   showCart = true,
   showAuth = true,
+  cartCount = 0,
   user,
   onLogin,
   onSignup,
@@ -26,17 +28,17 @@ const Navbar = ({
         
         {/* Left Side: Brand and Links */}
         <div className="farsly-navbar-left">
-          <a href="/" className="farsly-navbar-brand">{brand}</a>
+          <Link to="/" className="farsly-navbar-brand">{brand}</Link>
           
           <ul className="farsly-navbar-links desktop-only">
             {links.map((link, idx) => (
               <li key={idx}>
-                <a 
-                  href={link.href} 
+                <Link 
+                  to={link.href.replace(/^#/, '')} 
                   className={`farsly-navbar-link ${activePath === link.href ? 'active' : ''}`}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -71,6 +73,9 @@ const Navbar = ({
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <path d="M16 10a4 4 0 0 1-8 0"></path>
               </svg>
+              {cartCount > 0 && (
+                <span className="farsly-navbar-badge">{cartCount}</span>
+              )}
             </button>
           )}
 
@@ -115,6 +120,7 @@ const Navbar = ({
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <path d="M16 10a4 4 0 0 1-8 0"></path>
               </svg>
+              {cartCount > 0 && <span className="farsly-navbar-badge">{cartCount}</span>}
             </button>
           )}
 
@@ -145,12 +151,12 @@ const Navbar = ({
           <ul className="farsly-navbar-mobile-links">
             {links.map((link, idx) => (
               <li key={idx}>
-                <a 
-                  href={link.href} 
+                <Link 
+                  to={link.href.replace(/^#/, '')} 
                   className={`farsly-navbar-mobile-link ${activePath === link.href ? 'active' : ''}`}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

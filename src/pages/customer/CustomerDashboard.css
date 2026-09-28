@@ -1,0 +1,310 @@
+/* ==========================================================================
+   CUSTOMER DASHBOARD
+   ========================================================================== */
+
+.dashboard-page {
+  background: var(--color-background);
+  min-height: 100vh;
+}
+
+.dashboard-main {
+  padding-top: var(--space-4xl);
+  padding-bottom: var(--space-7xl);
+}
+
+/* ─── Welcome ─── */
+
+.dashboard-welcome {
+  margin-bottom: var(--space-7xl);
+}
+
+.dashboard-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.dashboard-greeting {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  color: var(--color-primary);
+  line-height: 1.1;
+  margin: 0 0 var(--space-md);
+}
+
+.dashboard-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ─── Sections ─── */
+
+.dashboard-section {
+  margin-bottom: var(--space-7xl);
+}
+
+.dashboard-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-2xl);
+}
+
+.dashboard-section-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  color: var(--color-primary);
+  margin: 0 0 var(--space-2xl);
+}
+
+.dashboard-section-header .dashboard-section-title {
+  margin-bottom: 0;
+}
+
+.dashboard-view-all {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.dashboard-view-all:hover {
+  color: var(--color-accent-dark);
+}
+
+/* ─── Active Order ─── */
+
+.dashboard-active-order {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+}
+
+.dashboard-order-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xl);
+}
+
+.dashboard-order-id {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  color: var(--color-primary);
+  letter-spacing: 0.02em;
+}
+
+.dashboard-order-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.dashboard-order-item {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  color: var(--color-text);
+}
+
+.dashboard-order-item-qty {
+  color: var(--color-text-muted);
+}
+
+.dashboard-order-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.dashboard-order-total {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  color: var(--color-primary);
+}
+
+.dashboard-order-eta {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-sage-dark);
+  font-weight: var(--font-medium);
+}
+
+.dashboard-order-date {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* ─── Quick Actions ─── */
+
+.dashboard-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+}
+
+.dashboard-action-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  padding: var(--space-2xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.dashboard-action-card:hover {
+  border-color: var(--color-border-medium);
+  box-shadow: var(--shadow-sm);
+}
+
+.dashboard-action-card svg {
+  flex-shrink: 0;
+  color: var(--color-sage);
+  margin-top: 2px;
+}
+
+.dashboard-action-card h3 {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--font-semibold);
+  color: var(--color-primary);
+  margin: 0 0 var(--space-xs);
+}
+
+.dashboard-action-card p {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ─── Favorites Grid ─── */
+
+.dashboard-favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3xl);
+}
+
+/* ─── Quick Reorder ─── */
+
+.dashboard-reorder {
+  margin-bottom: var(--space-7xl);
+}
+
+.dashboard-reorder-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  overflow: hidden;
+}
+
+.dashboard-reorder-image {
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.dashboard-reorder-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.dashboard-reorder-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.dashboard-reorder-price {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-sm);
+}
+
+/* ─── Recent Orders List ─── */
+
+.dashboard-orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.dashboard-order-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+}
+
+.dashboard-order-summary {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ─── Responsive ─── */
+
+@media (max-width: 900px) {
+  .dashboard-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-favorites-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-greeting {
+    font-size: var(--text-3xl);
+  }
+
+  .dashboard-favorites-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-reorder-inner {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .dashboard-reorder-info {
+    align-items: center;
+  }
+}

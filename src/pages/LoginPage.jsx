@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import { mockUsers } from '../data/users';
 
 export default function LoginPage() {
@@ -9,6 +10,19 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [focusedInput, setFocusedInput] = useState(null);
   const navigate = useNavigate();
+  const { login, user } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (user) {
+      if (user.role === 'customer') {
+        navigate('/customer', { replace: true });
+      } else if (user.role === 'restaurant') {
+        navigate('/restaurant', { replace: true });
+      } else {
+        navigate('/', { replace: true });
+      }
+    }
+  }, [user, navigate]);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,6 +34,7 @@ export default function LoginPage() {
 
     if (user) {
       setError(''); // Bersihkan error jika berhasil
+      login(user); // Store auth state
       
       if (user.role === 'customer') {
         navigate('/customer');
