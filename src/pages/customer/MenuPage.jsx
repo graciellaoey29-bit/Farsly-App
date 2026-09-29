@@ -12,7 +12,6 @@ import './MenuPage.css';
 const customerLinks = [
   { label: 'Home', href: '/' },
   { label: 'Menu', href: '/menu' },
-  { label: 'Farsly Club', href: '/club' },
 ];
 
 const CATEGORIES = ['All', 'Poke', 'Salads', 'Drinks', 'Seasonal'];
