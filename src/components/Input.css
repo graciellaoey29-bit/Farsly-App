@@ -1,0 +1,72 @@
+.farsly-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: 100%;
+}
+
+.farsly-input-label {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--font-medium);
+  color: var(--color-text-dark);
+}
+
+.farsly-input-required {
+  color: var(--color-accent);
+}
+
+.farsly-input-field {
+  width: 100%;
+  height: var(--input-height);
+  padding: 0 var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-border-medium);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  transition: all var(--transition-fast);
+}
+
+.farsly-input-field::placeholder {
+  color: var(--color-text-muted);
+}
+
+.farsly-input-field:hover:not(:disabled) {
+  border-color: var(--color-border-strong);
+}
+
+.farsly-input-field:focus {
+  /* Using the sage brand color to feel natural and calm */
+  outline: 2px solid var(--color-sage);
+  outline-offset: 2px;
+  border-color: var(--color-sage);
+}
+
+.farsly-input-field:disabled {
+  background: var(--color-background-soft);
+  color: var(--color-text-light);
+  cursor: not-allowed;
+  border-color: var(--color-border);
+}
+
+.farsly-input-field--error {
+  border-color: var(--color-error);
+}
+
+.farsly-input-field--error:focus {
+  outline-color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.farsly-input-helper {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-light);
+  margin-top: var(--space-xs);
+}
+
+.farsly-input-helper--error {
+  color: var(--color-error);
+}

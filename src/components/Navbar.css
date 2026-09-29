@@ -1,0 +1,258 @@
+.farsly-navbar {
+  width: 100%;
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.farsly-navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--navbar-height, 82px);
+  padding: 0 var(--space-2xl);
+  max-width: var(--container-width, 1220px);
+  margin: 0 auto;
+}
+
+.farsly-navbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5xl); /* Generous spacing between brand and links */
+}
+
+.farsly-navbar-brand {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--color-primary-dark);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.farsly-navbar-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xl); /* Spacious links */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.farsly-navbar-link {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--font-medium);
+  color: var(--color-sage-dark);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  padding: var(--space-xs) 0;
+  position: relative;
+}
+
+.farsly-navbar-link:hover {
+  color: var(--color-primary-dark);
+}
+
+.farsly-navbar-link.active {
+  color: var(--color-primary-dark);
+  font-weight: var(--font-semibold);
+}
+
+.farsly-navbar-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-pill);
+}
+
+.farsly-navbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.farsly-navbar-icon-btn {
+  position: relative;
+  background: transparent;
+  border: none;
+  color: var(--color-primary-dark);
+  cursor: pointer;
+  padding: var(--space-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.farsly-navbar-icon-btn:hover {
+  color: var(--color-accent);
+  transform: scale(1.05);
+}
+
+.farsly-navbar-badge {
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  background: var(--color-accent);
+  color: var(--color-surface);
+  font-size: 10px;
+  font-weight: var(--font-bold);
+  font-family: var(--font-body);
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-background);
+}
+
+.farsly-navbar-auth {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-left: var(--space-sm);
+}
+
+/* Warm cream/beige background, dark green text */
+.farsly-navbar-btn-login {
+  background: var(--color-background-beige);
+  color: var(--color-primary-dark);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 10px var(--space-xl);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.farsly-navbar-btn-login:hover {
+  background: var(--color-background-soft);
+}
+
+/* Muted coral background, white text */
+.farsly-navbar-btn-signup {
+  background: var(--color-accent);
+  color: var(--color-surface);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 10px var(--space-xl);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.farsly-navbar-btn-signup:hover {
+  background: var(--color-accent-dark);
+}
+
+.farsly-navbar-user-desktop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.farsly-navbar-user-name {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--font-semibold);
+  color: var(--color-primary-dark);
+}
+
+/* Mobile styles */
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .desktop-only {
+    display: none !important;
+  }
+  .mobile-only {
+    display: flex;
+  }
+  
+  .farsly-navbar-mobile-controls {
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .farsly-navbar-menu-toggle {
+    background: transparent;
+    border: none;
+    color: var(--color-primary-dark);
+    padding: var(--space-xs);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.farsly-navbar-mobile-menu {
+  background: var(--color-background);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-2xl);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: var(--z-dropdown, 10);
+  box-shadow: var(--shadow-sm);
+}
+
+.farsly-navbar-mobile-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.farsly-navbar-mobile-link {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  color: var(--color-sage-dark);
+  text-decoration: none;
+  padding: var(--space-xs) 0;
+}
+
+.farsly-navbar-mobile-link.active {
+  color: var(--color-primary-dark);
+  font-weight: var(--font-semibold);
+}
+
+.farsly-navbar-mobile-auth {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.farsly-navbar-mobile-auth button {
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 375px) {
+  .farsly-navbar-inner {
+    padding: 0 var(--space-lg);
+  }
+  .farsly-navbar-mobile-menu {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}

@@ -1,0 +1,82 @@
+.farsly-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-5xl);
+  width: 100%;
+}
+
+.farsly-page-header-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 640px;
+}
+
+.farsly-page-header-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-sage-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-sm);
+}
+
+.farsly-page-header-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  color: var(--color-primary-dark);
+  margin: 0;
+  margin-bottom: var(--space-md);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.farsly-page-header-title:last-child {
+  margin-bottom: 0;
+}
+
+.farsly-page-header-description {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.farsly-page-header-action {
+  display: flex;
+  flex-shrink: 0;
+  /* Optically align the button with the middle of the title if there's no eyebrow */
+  margin-top: 4px; 
+}
+
+/* Responsive adjustments */
+@media (max-width: 720px) {
+  .farsly-page-header {
+    flex-direction: column;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-4xl);
+  }
+  
+  .farsly-page-header-title {
+    font-size: var(--text-3xl);
+  }
+  
+  .farsly-page-header-description {
+    font-size: var(--text-md);
+  }
+  
+  .farsly-page-header-action {
+    margin-top: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 375px) {
+  .farsly-page-header-title {
+    font-size: var(--text-2xl);
+  }
+}
