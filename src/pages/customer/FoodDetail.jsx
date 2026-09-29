@@ -11,7 +11,6 @@ import './FoodDetail.css';
 const customerLinks = [
   { label: 'Home', href: '#/' },
   { label: 'Menu', href: '#/menu' },
-  { label: 'Farsly Club', href: '#/club' },
 ];
 
 const FoodDetail = () => {
