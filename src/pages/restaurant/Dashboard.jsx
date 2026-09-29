@@ -26,7 +26,8 @@ const Dashboard = ({ onViewAll }) => {
   // Links for staff navbar
   const staffLinks = [
     { label: 'Dashboard', href: '/restaurant' },
-    { label: 'Orders', href: '/restaurant/orders' }
+    { label: 'Orders', href: '/restaurant/orders' },
+    { label: 'Inventory', href: '/restaurant/inventory' }
   ];
 
   const handleLogout = () => {

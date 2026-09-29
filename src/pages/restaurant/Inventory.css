@@ -1,0 +1,645 @@
+/* ==========================================================================
+   MENU & INVENTORY STYLES
+   Adheres to Farsly design system (variable.css & global.css)
+   Prefix: farsly-inventory-
+   ========================================================================== */
+
+.farsly-inventory-layout {
+  min-height: 100vh;
+  background: var(--color-background);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+/* Header actions (Demo reset + Add button) */
+.farsly-inventory-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.farsly-inventory-demo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px var(--space-md);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.02em;
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  border: 1px dashed var(--color-border-strong);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.farsly-inventory-demo-btn:hover {
+  background: var(--color-background-beige);
+  color: var(--color-text);
+  border-color: var(--color-sage);
+}
+
+/* ==========================================================================
+   SECTION & TOOLBAR
+   ========================================================================== */
+
+.farsly-inventory-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.farsly-inventory-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* Search */
+.farsly-inventory-search {
+  position: relative;
+  max-width: 380px;
+}
+
+.farsly-inventory-search-icon {
+  position: absolute;
+  left: var(--space-md);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.farsly-inventory-search-input {
+  width: 100%;
+  height: var(--input-height);
+  padding: 0 var(--space-lg) 0 40px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-border-medium);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  transition: all var(--transition-fast);
+}
+
+.farsly-inventory-search-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.farsly-inventory-search-input:focus {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 2px;
+  border-color: var(--color-sage);
+}
+
+/* Filter Tabs */
+.farsly-inventory-filter-tabs {
+  display: flex;
+  gap: var(--space-sm);
+  overflow-x: auto;
+  padding-bottom: var(--space-xs);
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.farsly-inventory-filter-tab {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: 38px;
+  padding: 0 var(--space-lg);
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.farsly-inventory-filter-tab:hover,
+.farsly-inventory-filter-tab--active {
+  border-color: var(--color-sage-dark);
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.farsly-inventory-filter-tab:focus-visible {
+  outline: 2px solid var(--color-sage-dark);
+  outline-offset: 2px;
+}
+
+.farsly-inventory-filter-count {
+  display: inline-grid;
+  min-width: 20px;
+  min-height: 20px;
+  place-items: center;
+  border-radius: var(--radius-pill);
+  background: var(--color-background-beige);
+  color: var(--color-primary-dark);
+  font-size: var(--text-xs);
+}
+
+.farsly-inventory-filter-tab--active .farsly-inventory-filter-count {
+  background: var(--color-sage);
+  color: var(--color-surface);
+}
+
+/* ==========================================================================
+   TABLE
+   ========================================================================== */
+
+.farsly-inventory-table-container {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+}
+
+.farsly-inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 680px;
+}
+
+.farsly-inventory-table thead {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.farsly-inventory-table th {
+  padding: var(--space-lg) var(--space-xl);
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.farsly-inventory-table td {
+  padding: var(--space-lg) var(--space-xl);
+  vertical-align: middle;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.farsly-inventory-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.farsly-inventory-table tbody tr:hover {
+  background: var(--color-background-soft);
+}
+
+/* Sold out row */
+.farsly-inventory-row--soldout {
+  opacity: 0.6;
+}
+
+/* Cell: Item (thumbnail + name + desc) */
+.farsly-inventory-cell-item {
+  min-width: 260px;
+}
+
+.farsly-inventory-item-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.farsly-inventory-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.farsly-inventory-thumb-placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: var(--color-background-beige);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+}
+
+.farsly-inventory-item-name {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--font-semibold);
+  color: var(--color-primary-dark);
+  overflow-wrap: break-word;
+}
+
+.farsly-inventory-badge {
+  display: inline-block;
+  margin-left: var(--space-sm);
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-surface);
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: var(--font-bold);
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+}
+
+.farsly-inventory-item-desc {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Cell: Category */
+.farsly-inventory-category-tag {
+  display: inline-block;
+  padding: 4px var(--space-md);
+  border-radius: var(--radius-pill);
+  background: var(--color-background-beige);
+  color: var(--color-primary-dark);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  white-space: nowrap;
+}
+
+/* Cell: Price */
+.farsly-inventory-cell-price {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--color-primary-dark);
+  white-space: nowrap;
+}
+
+/* Cell: Status toggle */
+.farsly-inventory-status-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.farsly-inventory-status-toggle:hover {
+  opacity: 0.8;
+}
+
+.farsly-inventory-status-toggle:focus-visible {
+  outline: 2px solid var(--color-sage-dark);
+  outline-offset: 2px;
+  border-radius: var(--radius-pill);
+}
+
+/* Cell: Actions */
+.farsly-inventory-cell-actions {
+  white-space: nowrap;
+}
+
+.farsly-inventory-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px var(--space-md);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-right: var(--space-xs);
+}
+
+.farsly-inventory-action-btn:focus-visible {
+  outline: 2px solid var(--color-sage-dark);
+  outline-offset: 2px;
+}
+
+.farsly-inventory-action-btn--edit {
+  background: transparent;
+  color: var(--color-sage-dark);
+  border: 1px solid var(--color-sage);
+}
+
+.farsly-inventory-action-btn--edit:hover {
+  background: var(--color-sage);
+  color: var(--color-surface);
+}
+
+.farsly-inventory-action-btn--delete {
+  background: transparent;
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+}
+
+.farsly-inventory-action-btn--delete:hover {
+  background: var(--color-error);
+  color: var(--color-surface);
+}
+
+/* Empty card */
+.farsly-inventory-empty-card {
+  min-width: 0;
+  padding: var(--space-4xl);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================================================
+   MODAL
+   ========================================================================== */
+
+.farsly-inventory-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(33, 53, 45, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  padding: var(--space-xl);
+}
+
+.farsly-inventory-modal {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.farsly-inventory-modal--small {
+  max-width: 440px;
+}
+
+.farsly-inventory-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2xl) var(--space-2xl) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.farsly-inventory-modal-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  color: var(--color-primary-dark);
+}
+
+.farsly-inventory-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.farsly-inventory-modal-close:hover {
+  background: var(--color-background-beige);
+  color: var(--color-text);
+}
+
+.farsly-inventory-modal-close:focus-visible {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   FORM
+   ========================================================================== */
+
+.farsly-inventory-form {
+  padding: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.farsly-inventory-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.farsly-inventory-form-full {
+  width: 100%;
+}
+
+/* Select styling to match Input component */
+.farsly-inventory-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2321352d' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-lg) center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+/* Textarea styling to match Input component */
+.farsly-inventory-textarea {
+  height: auto;
+  min-height: 80px;
+  padding: var(--space-md) var(--space-lg);
+  resize: vertical;
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+/* File Upload Styles */
+.farsly-inventory-file-input-hidden {
+  display: none;
+}
+
+.farsly-inventory-file-upload-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--space-xl);
+  border: 1.5px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.farsly-inventory-file-upload-box:hover {
+  background: var(--color-background-beige);
+  border-color: var(--color-sage);
+}
+
+.farsly-inventory-file-upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-text-muted);
+}
+
+.farsly-inventory-file-upload-text {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--font-semibold);
+  color: var(--color-primary-dark);
+}
+
+.farsly-inventory-file-upload-hint {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+}
+
+.farsly-inventory-image-preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.farsly-inventory-image-preview-upload {
+  width: 100%;
+  max-width: 240px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.farsly-inventory-image-change-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px var(--space-lg);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  background: var(--color-background-beige);
+  color: var(--color-primary-dark);
+  border: 1px solid var(--color-border-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.farsly-inventory-image-change-btn:hover {
+  background: var(--color-sage);
+  color: var(--color-surface);
+  border-color: var(--color-sage-dark);
+}
+
+/* Checkbox */
+.farsly-inventory-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.farsly-inventory-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-sage-dark);
+  cursor: pointer;
+}
+
+/* Modal footer */
+.farsly-inventory-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Delete body */
+.farsly-inventory-delete-body {
+  padding: var(--space-2xl);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.farsly-inventory-delete-body p {
+  margin: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 820px) {
+  .farsly-inventory-search {
+    max-width: 100%;
+  }
+
+  .farsly-inventory-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .farsly-inventory-header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .farsly-inventory-modal {
+    max-height: 95vh;
+    margin: var(--space-sm);
+  }
+
+  .farsly-inventory-form {
+    padding: var(--space-lg);
+  }
+
+  .farsly-inventory-modal-header {
+    padding: var(--space-lg) var(--space-lg) var(--space-md);
+  }
+
+  .farsly-inventory-delete-body {
+    padding: var(--space-lg);
+  }
+
+  .farsly-inventory-modal-footer {
+    flex-direction: column;
+  }
+}
