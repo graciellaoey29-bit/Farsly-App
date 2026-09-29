@@ -336,7 +336,7 @@ const Inventory = () => {
                 onClick={resetMenu}
                 title="Reset to default menu data"
               >
-                [Demo] Reset Menu
+                Reset Menu
               </button>
               <Button variant="primary" onClick={openCreateModal}>
                 + Add Menu Item

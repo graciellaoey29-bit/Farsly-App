@@ -90,7 +90,7 @@ const Dashboard = ({ onViewAll }) => {
                 onClick={clearOrders}
                 title="Simulate empty state (no orders)"
               >
-                [Demo] Clear Orders
+                Clear Orders
               </button>
               <button
                 type="button"
@@ -98,7 +98,7 @@ const Dashboard = ({ onViewAll }) => {
                 onClick={loadDemoOrders}
                 title="Reset to initial mock orders"
               >
-                [Demo] Reset Orders
+                Reset Orders
               </button>
             </div>
           }
@@ -173,7 +173,7 @@ const Dashboard = ({ onViewAll }) => {
                     className="dashboard-demo-btn dashboard-demo-btn--primary"
                     onClick={loadDemoOrders}
                   >
-                    [Demo] Load Demo Orders
+                    Load  Orders
                   </button>
                 }
               />
