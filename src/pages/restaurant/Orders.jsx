@@ -42,7 +42,8 @@ const Orders = () => {
 
   const staffLinks = [
     { label: 'Dashboard', href: '/restaurant' },
-    { label: 'Orders', href: '/restaurant/orders' }
+    { label: 'Orders', href: '/restaurant/orders' },
+    { label: 'Inventory', href: '/restaurant/inventory' }
   ];
 
   const sortedOrders = useMemo(
