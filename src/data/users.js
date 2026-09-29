@@ -12,7 +12,7 @@ export const mockUsers = [
   {
     id: 1,
     name: 'Sarah Customer',
-    email: 'customer@farsly.com',
+    email:  'customer@farsly.com',
     password: 'password123',
     role: 'customer'
   },

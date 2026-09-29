@@ -16,6 +16,18 @@ export const OrdersProvider = ({ children }) => {
   };
 
   /**
+   * Update order status immutably.
+   * Automatically updates stats and recentOrders via useMemo.
+   */
+  const updateOrderStatus = (orderId, newStatus) => {
+    setOrders((prevOrders) =>
+      prevOrders.map((order) =>
+        order.id === orderId ? { ...order, status: newStatus } : order
+      )
+    );
+  };
+
+  /**
    * Sort orders from newest to oldest based on ISO timestamp, capped at 5 items.
    */
   const recentOrders = useMemo(() => {
@@ -52,6 +64,7 @@ export const OrdersProvider = ({ children }) => {
     recentOrders,
     stats,
     addOrder,
+    updateOrderStatus,
     loadDemoOrders,
     clearOrders
   };

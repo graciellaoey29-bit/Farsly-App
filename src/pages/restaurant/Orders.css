@@ -1,0 +1,237 @@
+.farsly-orders-layout {
+  min-height: 100vh;
+  background: var(--color-background);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+.farsly-orders-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.farsly-orders-filter-tabs {
+  display: flex;
+  gap: var(--space-sm);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--space-xs);
+  scrollbar-width: thin;
+}
+
+.farsly-orders-filter-tab {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: 38px;
+  padding: 0 var(--space-lg);
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.farsly-orders-filter-tab:hover,
+.farsly-orders-filter-tab--active {
+  border-color: var(--color-sage-dark);
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.farsly-orders-filter-tab:focus-visible,
+.farsly-orders-action-button:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.farsly-orders-filter-count {
+  display: inline-grid;
+  min-width: 20px;
+  min-height: 20px;
+  place-items: center;
+  border-radius: var(--radius-pill);
+  background: var(--color-background-beige);
+  color: var(--color-primary-dark);
+  font-size: var(--text-xs);
+}
+
+.farsly-orders-filter-tab--active .farsly-orders-filter-count {
+  background: var(--color-sage);
+  color: var(--color-surface);
+}
+
+.farsly-orders-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-xl);
+}
+
+.farsly-orders-card,
+.farsly-orders-empty-card {
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.farsly-orders-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-2xl);
+}
+
+.farsly-orders-card-header,
+.farsly-orders-card-footer,
+.farsly-orders-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.farsly-orders-id,
+.farsly-orders-meta,
+.farsly-orders-total-label,
+.farsly-orders-notes {
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+}
+
+.farsly-orders-id {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-weight: var(--font-semibold);
+}
+
+.farsly-orders-customer-name {
+  margin: 0;
+  color: var(--color-primary-dark);
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  overflow-wrap: break-word;
+}
+
+.farsly-orders-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.farsly-orders-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: var(--space-lg) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  list-style: none;
+}
+
+.farsly-orders-item {
+  min-width: 0;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+}
+
+.farsly-orders-item span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.farsly-orders-item span:last-child {
+  flex: 0 0 auto;
+  color: var(--color-text-muted);
+}
+
+.farsly-orders-notes {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.farsly-orders-card-footer {
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+.farsly-orders-total {
+  color: var(--color-primary-dark);
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+}
+
+.farsly-orders-action {
+  margin-left: auto;
+}
+
+.farsly-orders-action-button {
+  min-height: 38px;
+  padding: 0 var(--space-lg);
+  border: 1px solid var(--color-sage-dark);
+  border-radius: var(--radius-pill);
+  background: var(--color-sage-dark);
+  color: var(--color-surface);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  transition: background var(--transition-fast);
+}
+
+.farsly-orders-action-button:hover {
+  background: var(--color-primary-dark);
+}
+
+.farsly-orders-action-button--completed {
+  background: var(--color-primary);
+  border-color: var(--color-primary-dark);
+}
+
+.farsly-orders-completed-label {
+  color: var(--color-success);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+}
+
+.farsly-orders-empty-card {
+  padding: var(--space-4xl);
+}
+
+@media (max-width: 820px) {
+  .farsly-orders-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .farsly-orders-card,
+  .farsly-orders-empty-card {
+    padding: var(--space-lg);
+  }
+
+  .farsly-orders-card-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .farsly-orders-card-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .farsly-orders-action {
+    margin-left: 0;
+  }
+}
