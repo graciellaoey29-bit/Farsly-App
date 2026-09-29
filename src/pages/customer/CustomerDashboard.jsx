@@ -14,7 +14,6 @@ import './CustomerDashboard.css';
 const customerLinks = [
   { label: 'Menu', href: '/menu' },
   { label: 'Favorites', href: '/favorites' },
-  { label: 'Orders', href: '/customer/orders' },
 ];
 
 const CustomerDashboard = () => {
@@ -48,6 +47,7 @@ const CustomerDashboard = () => {
       <Navbar
         brand="FARSLY"
         links={customerLinks}
+        activePath="/customer"
         favoriteCount={favorites.length}
         cartCount={cartCount}
         showFavorites={true}
@@ -63,13 +63,76 @@ const CustomerDashboard = () => {
 
       <main className="dashboard-main container">
 
-        {/* ─── 1. Welcome ─── */}
+        {/* ══════════════════════════════════
+            1. WELCOME
+            ══════════════════════════════════ */}
         <header className="dashboard-welcome">
-          <span className="dashboard-eyebrow">Good to see you, {currentUser.name.split(' ')[0]}</span>
-          <h1 className="dashboard-greeting">Ready for something fresh?</h1>
+          <span className="dashboard-eyebrow">Good to see you, {(currentUser.name || 'Guest').split(' ')[0]}</span>
+          <h1 className="dashboard-greeting">
+            Ready for something<br />
+            fresh?
+          </h1>
+          <p className="dashboard-subtitle">
+            Your personal Farsly space — track orders, revisit favorites, 
+            and reorder the bowls you love.
+          </p>
         </header>
 
-        {/* ─── 2. Active Order ─── */}
+        {/* ══════════════════════════════════
+            2. QUICK ACTIONS
+            ══════════════════════════════════ */}
+        <section className="dashboard-section dashboard-quick-actions">
+          <div className="quick-actions-grid">
+
+            <Link to="/menu" className="quick-action-link">
+              <div className="quick-action-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 6h18M3 12h18M3 18h18" />
+                </svg>
+              </div>
+              <span className="quick-action-title">Browse Menu</span>
+              <span className="quick-action-desc">Discover bowls, salads &amp; drinks</span>
+            </Link>
+
+            <Link to="/favorites" className="quick-action-link">
+              <div className="quick-action-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+              </div>
+              <span className="quick-action-title">Favorites</span>
+              <span className="quick-action-desc">Your saved bowls &amp; meals</span>
+            </Link>
+
+            {recentOrders.length > 0 && (
+              <button 
+                className="quick-action-link"
+                onClick={() => {
+                  const lastCompleted = recentOrders[0];
+                  const reorderItem = menuData.find((m) => m.id === lastCompleted.items[0]?.menuItemId);
+                  if (reorderItem) {
+                    addToCart(reorderItem);
+                    navigate('/cart');
+                  }
+                }}
+              >
+                <div className="quick-action-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="23 4 23 10 17 10" />
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                  </svg>
+                </div>
+                <span className="quick-action-title">Order Again</span>
+                <span className="quick-action-desc">Reorder your last meal</span>
+              </button>
+            )}
+
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════
+            3. LATEST ORDER
+            ══════════════════════════════════ */}
         <section className="dashboard-section dashboard-active-order-section">
           <h2 className="dashboard-section-title">Your Latest Order</h2>
 
@@ -124,34 +187,9 @@ const CustomerDashboard = () => {
           )}
         </section>
 
-        {/* ─── 3. Quick Actions ─── */}
-        <section className="dashboard-section dashboard-quick-actions">
-          <div className="quick-actions-grid">
-            <Link to="/menu" className="quick-action-link">
-              Browse Menu
-            </Link>
-            <Link to="/favorites" className="quick-action-link">
-              Favorites
-            </Link>
-            {recentOrders.length > 0 && (
-              <button 
-                className="quick-action-link"
-                onClick={() => {
-                  const lastCompleted = recentOrders[0];
-                  const reorderItem = menuData.find((m) => m.id === lastCompleted.items[0]?.menuItemId);
-                  if (reorderItem) {
-                    addToCart(reorderItem);
-                    navigate('/cart');
-                  }
-                }}
-              >
-                Order Again
-              </button>
-            )}
-          </div>
-        </section>
-
-        {/* ─── 4. Favorite Meals ─── */}
+        {/* ══════════════════════════════════
+            4. FAVORITES
+            ══════════════════════════════════ */}
         <section className="dashboard-section dashboard-favorites-section">
           <h2 className="dashboard-section-title">Favorites</h2>
 
@@ -191,7 +229,9 @@ const CustomerDashboard = () => {
           )}
         </section>
 
-        {/* ─── 5. Recent Orders ─── */}
+        {/* ══════════════════════════════════
+            5. RECENTLY ORDERED
+            ══════════════════════════════════ */}
         <section className="dashboard-section dashboard-recent-orders-section">
           <h2 className="dashboard-section-title">Recently Ordered</h2>
 

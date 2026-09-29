@@ -5,6 +5,7 @@ import { OrdersProvider } from './context/OrdersContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/customer/HomePage';
+import RegisterPage from './pages/RegisterPage';
 import Favorites from './pages/customer/Favorites';
 import Cart from './pages/customer/Cart';
 import MenuPage from './pages/customer/MenuPage';
@@ -25,7 +26,7 @@ export default function App() {
           <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<LoginPage />} />
+          <Route path="/signup" element={<RegisterPage />} />
           
           {/* Public Customer Routes */}
           <Route path="/menu" element={<MenuPage />} />
@@ -39,14 +40,6 @@ export default function App() {
             element={
               <ProtectedRoute requiredRole="customer">
                 <CustomerDashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/customer/orders"
-            element={
-              <ProtectedRoute requiredRole="customer">
-                <CustomerPlaceholder title="Customer Orders" />
               </ProtectedRoute>
             }
           />

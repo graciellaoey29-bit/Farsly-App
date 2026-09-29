@@ -19,7 +19,9 @@ import './Dashboard.css';
 const Dashboard = ({ onViewAll }) => {
   const { orders, recentOrders, stats, loadDemoOrders, clearOrders } = useOrders();
   const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
+
+  const currentUser = user || { name: 'Kitchen Staff', role: 'Staff' };
 
   // Links for staff navbar
   const staffLinks = [
@@ -65,7 +67,7 @@ const Dashboard = ({ onViewAll }) => {
         brand="FARSLY"
         links={staffLinks}
         activePath="/restaurant"
-        user={{ name: 'Kitchen Staff', role: 'Staff' }}
+        user={currentUser}
         showFavorites={false}
         showCart={false}
         showAuth={true}
