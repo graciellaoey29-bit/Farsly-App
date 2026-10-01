@@ -199,7 +199,7 @@ const Inventory = () => {
     setFormData({
       name: item.name,
       category: item.category,
-      price: item.price.replace('$', ''),
+      price: String(item.price).replace('$', ''),
       description: item.description,
       image: item.image || '',
       badge: item.badge || '',

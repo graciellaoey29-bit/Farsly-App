@@ -88,10 +88,12 @@ export const ShopProvider = ({ children }) => {
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   const parsePrice = (priceStr) => {
-    if (!priceStr) return 0;
+    if (!priceStr && priceStr !== 0) return 0;
+    // Ensure priceStr is a string for regex operations
+    const str = String(priceStr);
     // Handle price strings like "$16.90" or "Rp 89.000"
-    const cleaned = priceStr.replace(/[^\d.,]/g, '');
-    const isIndonesian = priceStr.toLowerCase().includes('rp');
+    const cleaned = str.replace(/[^\d.,]/g, '');
+    const isIndonesian = str.toLowerCase().includes('rp');
     
     if (isIndonesian) {
        return parseInt(cleaned.replace(/[.,]/g, ''), 10);
@@ -106,7 +108,7 @@ export const ShopProvider = ({ children }) => {
   const formatPrice = (value) => {
     // Assuming Farsly uses USD for this mock, but supports IDR structure
     // from sample data: "$16.90"
-    if (signatureBowls.length > 0 && signatureBowls[0].price.includes('$')) {
+    if (signatureBowls.length > 0 && String(signatureBowls[0].price).includes('$')) {
       return '$' + value.toFixed(2);
     }
     return 'Rp ' + value.toLocaleString('id-ID');
