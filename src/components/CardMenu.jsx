@@ -20,8 +20,8 @@ const CardMenu = ({
   onFavorite,
   onAddToCart
 }) => {
-  // Handle image URL - use absolute path for public assets
-  const imageUrl = image ? image : '';
+  // Handle image URL - prepend BASE_URL for GitHub Pages compatibility
+  const imageUrl = image ? `${import.meta.env.BASE_URL}${image.replace(/^\//, '')}` : '';
 
   return (
     <article className="farsly-card-menu">

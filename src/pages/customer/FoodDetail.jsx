@@ -78,6 +78,9 @@ const FoodDetail = () => {
 
   const isFav = isFavorite(item.id);
 
+  // Handle image URL with BASE_URL for GitHub Pages
+  const imageUrl = item.image ? `${import.meta.env.BASE_URL}${item.image.replace(/^\//, '')}` : '';
+
   return (
     <div className="food-detail-page page">
       <Navbar
@@ -111,7 +114,7 @@ const FoodDetail = () => {
           {/* Image Section */}
           <div className="food-detail-image-wrapper">
             {item.image ? (
-              <img src={item.image} alt={item.name} className="food-detail-image" />
+              <img src={imageUrl} alt={item.name} className="food-detail-image" />
             ) : (
               <div className="food-detail-image-placeholder">No Image Available</div>
             )}

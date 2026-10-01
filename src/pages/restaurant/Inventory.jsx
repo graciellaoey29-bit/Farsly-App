@@ -435,7 +435,7 @@ const Inventory = () => {
                         <div className="farsly-inventory-item-info">
                           {item.image ? (
                             <img
-                              src={item.image}
+                              src={`${import.meta.env.BASE_URL}${item.image.replace(/^\//, '')}`}
                               alt={item.name}
                               className="farsly-inventory-thumb"
                             />
@@ -637,7 +637,7 @@ const Inventory = () => {
                   {formData.image ? (
                     <div className="farsly-inventory-image-preview-container">
                       <img
-                        src={formData.image}
+                        src={`${import.meta.env.BASE_URL}${formData.image.replace(/^\//, '')}`}
                         alt="Menu preview"
                         className="farsly-inventory-image-preview-upload"
                       />

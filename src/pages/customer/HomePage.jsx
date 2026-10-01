@@ -61,7 +61,7 @@ const HomePage = () => {
             <div className="hero-visual">
               <div className="hero-img-ring"></div>
               <img
-                src="/assets/images/hero-bowl.jpg"
+                src={`${import.meta.env.BASE_URL}assets/images/hero-bowl.jpg`}
                 alt="Farsly signature salmon poke bowl"
                 className="hero-img"
               />
@@ -83,7 +83,7 @@ const HomePage = () => {
           <div className="container philosophy-grid">
             <div className="philosophy-visual">
               <img
-                src="/assets/images/farm-to-bowl.jpg"
+                src={`${import.meta.env.BASE_URL}assets/images/farm-to-bowl.jpg`}
                 alt="Fresh organic ingredients from farm to bowl"
               />
             </div>
