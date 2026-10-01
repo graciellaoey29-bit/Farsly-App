@@ -20,15 +20,18 @@ const CardMenu = ({
   onFavorite,
   onAddToCart
 }) => {
+  // Handle image URL - use absolute path for public assets
+  const imageUrl = image ? image : '';
+
   return (
     <article className="farsly-card-menu">
       <div className="farsly-card-menu-image-wrapper">
         {id && image ? (
           <Link to={`/menu/${id}`} className="farsly-card-menu-link">
-            <img src={image} alt={name} className="farsly-card-menu-image" />
+            <img src={imageUrl} alt={name} className="farsly-card-menu-image" />
           </Link>
         ) : (
-          image && <img src={image} alt={name} className="farsly-card-menu-image" />
+          image && <img src={imageUrl} alt={name} className="farsly-card-menu-image" />
         )}
         
         {badge && (
